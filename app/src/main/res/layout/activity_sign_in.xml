@@ -11,12 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.jaikh.trubian2.SignInActivity">
 
-    <LinearLayout
-        android:id="@+id/email_login_form"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/my_image_view"
             android:layout_width="150dp"
@@ -105,5 +99,4 @@
             android:textColor="@color/White"
             android:textStyle="bold" />
 
-    </LinearLayout>
 </LinearLayout>
