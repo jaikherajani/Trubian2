@@ -49,7 +49,6 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (validateForm()) {
                     signIn(emailField.getText().toString(), passwordField.getText().toString());
-                    signIn.setVisibility(Button.GONE);
                     showProgressBar();
                 }
             }
@@ -64,11 +63,13 @@ public class SignInActivity extends AppCompatActivity {
 
     void showProgressBar() {
         progressBar.isIndeterminate();
+        signIn.setVisibility(Button.GONE);
         progressBar.setVisibility(ProgressBar.VISIBLE);
     }
 
     void hideProgressBar() {
         progressBar.setVisibility(ProgressBar.GONE);
+        signIn.setVisibility(Button.VISIBLE);
     }
 
     @Override
@@ -92,8 +93,8 @@ public class SignInActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(SignInActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this, "Authentication failed. Reason - " + task.getException(),
+                                    Toast.LENGTH_LONG).show();
                             updateUI(null);
                         }
                     }
@@ -103,9 +104,16 @@ public class SignInActivity extends AppCompatActivity {
     public void updateUI(FirebaseUser firebaseUser) {
         hideProgressBar();
         if (firebaseUser != null) {
-            Toast.makeText(this, "Signed in as " + firebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Signed Out!", Toast.LENGTH_SHORT).show();
+            firebaseUser.reload();
+            if (firebaseUser.isEmailVerified()) {
+                //if user has got his email verified
+                Toast.makeText(this, "Signed in as " + firebaseUser.getEmail(), Toast.LENGTH_LONG).show();
+                startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                SignInActivity.this.finish();
+            } else {
+                //if user's email is not verified
+                Toast.makeText(this, "Please verify your email first.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -130,7 +138,6 @@ public class SignInActivity extends AppCompatActivity {
         } else {
             passwordField.setError(null);
         }
-
         return valid;
     }
 }

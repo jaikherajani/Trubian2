@@ -45,7 +45,6 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (validateForm()) {
-                    verifyEmail.setVisibility(Button.GONE);
                     showProgressBar();
                     createAccount(emailField.getText().toString(), passwordField.getText().toString());
                 }
@@ -54,12 +53,14 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     void showProgressBar() {
+        verifyEmail.setVisibility(Button.GONE);
         progressBar.isIndeterminate();
         progressBar.setVisibility(ProgressBar.VISIBLE);
     }
 
     void hideProgressBar() {
         progressBar.setVisibility(ProgressBar.GONE);
+        verifyEmail.setVisibility(Button.VISIBLE);
     }
 
     private void createAccount(String email, String password) {
@@ -79,13 +80,13 @@ public class SignUpActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            sendEmailVerification();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(SignUpActivity.this, "Authentication failed.",
+                            Toast.makeText(SignUpActivity.this, "Authentication failed. Reason - " + task.getException(),
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                            //updateUI(null);
                         }
 
                         // [START_EXCLUDE]
@@ -96,7 +97,7 @@ public class SignUpActivity extends AppCompatActivity {
         // [END create_user_with_email]
     }
 
-    public void updateUI(FirebaseUser firebaseUser) {
+    /*public void updateUI(FirebaseUser firebaseUser) {
         hideProgressBar();
         if (firebaseUser != null) {
             Toast.makeText(this, "Signed in as " + firebaseUser.getEmail(), Toast.LENGTH_SHORT).show();
@@ -104,7 +105,7 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Signed Out!", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
     private boolean validateForm() {
         boolean valid = true;
@@ -163,11 +164,13 @@ public class SignUpActivity extends AppCompatActivity {
                             Toast.makeText(SignUpActivity.this,
                                     "Verification email sent to " + user.getEmail(),
                                     Toast.LENGTH_SHORT).show();
+                            mAuth.signOut();
+                            SignUpActivity.this.finish();
                         } else {
                             Log.e(TAG, "sendEmailVerification", task.getException());
                             Toast.makeText(SignUpActivity.this,
-                                    "Failed to send verification email.",
-                                    Toast.LENGTH_SHORT).show();
+                                    "Failed to send verification email. Reason - " + task.getException(),
+                                    Toast.LENGTH_LONG).show();
                         }
                         // [END_EXCLUDE]
                     }
