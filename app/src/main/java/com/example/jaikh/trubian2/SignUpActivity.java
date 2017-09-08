@@ -17,6 +17,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -26,6 +31,8 @@ public class SignUpActivity extends AppCompatActivity {
     AutoCompleteTextView emailField;
     EditText passwordField, userNameField, enrollmentNumberField;
     FirebaseAuth mAuth;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +40,8 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("users/students");
 
         emailField = findViewById(R.id.email);
         passwordField = findViewById(R.id.password);
@@ -133,16 +142,20 @@ public class SignUpActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(username)) {
             userNameField.setError("Required.");
             valid = false;
+        } else if (username.length() < 3) {
+            userNameField.setError("User Name mus be atleast 3 characters long.");
         } else {
-            passwordField.setError(null);
+            userNameField.setError(null);
         }
 
         String enrollmentnumber = enrollmentNumberField.getText().toString();
         if (TextUtils.isEmpty(username)) {
             enrollmentNumberField.setError("Required.");
             valid = false;
+        } else if (enrollmentnumber.length() != 12) {
+            enrollmentNumberField.setError("Invalid Enrollment Number");
         } else {
-            passwordField.setError(null);
+            enrollmentNumberField.setError(null);
         }
 
         return valid;
@@ -161,9 +174,17 @@ public class SignUpActivity extends AppCompatActivity {
                         hideProgressBar();
 
                         if (task.isSuccessful()) {
+                            String enrollmentNumber = enrollmentNumberField.getText().toString();
                             Toast.makeText(SignUpActivity.this,
                                     "Verification email sent to " + user.getEmail(),
                                     Toast.LENGTH_SHORT).show();
+                            Map<String, String> userData = new HashMap<String, String>();
+                            userData.put("name", userNameField.getText().toString());
+                            userData.put("enrollment_number", enrollmentNumber);
+                            userData.put("email", mAuth.getCurrentUser().getEmail());
+                            //databaseReference = databaseReference.child(enrollmentNumber.substring(4,5)+"/"+enrollmentNumber.substring(6,8)+"/"+enrollmentNumber);
+                            databaseReference = databaseReference.child(user.getUid());
+                            databaseReference.setValue(userData);
                             mAuth.signOut();
                             SignUpActivity.this.finish();
                         } else {

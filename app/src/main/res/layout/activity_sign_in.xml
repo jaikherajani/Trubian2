@@ -12,7 +12,6 @@
     tools:context="com.example.jaikh.trubian2.SignInActivity">
 
         <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/my_image_view"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
