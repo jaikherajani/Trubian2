@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -28,8 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
     static String TAG = "SignUpActivity";
     ProgressBar progressBar;
     Button verifyEmail;
-    AutoCompleteTextView emailField;
-    EditText passwordField, userNameField, enrollmentNumberField;
+    EditText emailField, passwordField, userNameField, enrollmentNumberField;
     FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;

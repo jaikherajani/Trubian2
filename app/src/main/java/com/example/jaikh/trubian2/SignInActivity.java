@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -18,15 +17,25 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.Serializable;
+import java.util.Map;
 
 public class SignInActivity extends AppCompatActivity {
 
     static String TAG = "SignInActivity";
     ProgressBar progressBar;
     Button signIn, signUp;
-    AutoCompleteTextView emailField;
-    EditText passwordField;
+    EditText emailField, passwordField;
     FirebaseAuth mAuth;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +51,9 @@ public class SignInActivity extends AppCompatActivity {
 
         //firebase initialization
         mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        intent = new Intent(SignInActivity.this, HomeActivity.class);
 
         //onClickListeners
         signIn.setOnClickListener(new View.OnClickListener() {
@@ -101,19 +113,37 @@ public class SignInActivity extends AppCompatActivity {
                 });
     }
 
-    public void updateUI(FirebaseUser firebaseUser) {
-        hideProgressBar();
+    public void updateUI(final FirebaseUser firebaseUser) {
         if (firebaseUser != null) {
             firebaseUser.reload();
-            if (firebaseUser.isEmailVerified()) {
-                //if user has got his email verified
-                Toast.makeText(this, "Signed in as " + firebaseUser.getEmail(), Toast.LENGTH_LONG).show();
-                startActivity(new Intent(SignInActivity.this, HomeActivity.class));
-                SignInActivity.this.finish();
-            } else {
-                //if user's email is not verified
-                Toast.makeText(this, "Please verify your email first.", Toast.LENGTH_SHORT).show();
-            }
+            databaseReference = firebaseDatabase.getReference("users/students/" + firebaseUser.getUid());
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    Map<String, String> values = (Map<String, String>) dataSnapshot.getValue();
+                    Log.d(TAG, "Link is " + databaseReference.toString());
+                    Log.d(TAG, "Value is: " + values);
+                    Log.d(TAG, "name is: " + values.get("name"));
+                    Log.d(TAG, "e_key is: " + values.get("enrollment_number"));
+                    Log.d(TAG, "email is: " + values.get("email"));
+                    intent.putExtra("user_values_map", (Serializable) values);
+                    if (firebaseUser.isEmailVerified()) {
+                        //if user has got his email verified
+                        Toast.makeText(SignInActivity.this, "Signed in as " + firebaseUser.getEmail(), Toast.LENGTH_LONG).show();
+                        hideProgressBar();
+                        startActivity(intent);
+                        SignInActivity.this.finish();
+                    } else {
+                        //if user's email is not verified
+                        Toast.makeText(SignInActivity.this, "Please verify your email first.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Toast.makeText(SignInActivity.this, "Interrupted by User!", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 
