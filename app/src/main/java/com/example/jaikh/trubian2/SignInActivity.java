@@ -28,9 +28,10 @@ import java.util.Map;
 
 public class SignInActivity extends AppCompatActivity {
 
+    static final boolean RESET_PWD = true; //when form is validated only for resetting the password
     static String TAG = "SignInActivity";
     ProgressBar progressBar;
-    Button signIn, signUp;
+    Button signIn, signUp, forgotPassword;
     EditText emailField, passwordField;
     FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;
@@ -48,6 +49,7 @@ public class SignInActivity extends AppCompatActivity {
         signUp = findViewById(R.id.register_button);
         emailField = findViewById(R.id.email);
         passwordField = findViewById(R.id.password);
+        forgotPassword = findViewById(R.id.reset_password_button);
 
         //firebase initialization
         mAuth = FirebaseAuth.getInstance();
@@ -59,7 +61,7 @@ public class SignInActivity extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validateForm()) {
+                if (validateForm(false)) {
                     signIn(emailField.getText().toString(), passwordField.getText().toString());
                     showProgressBar();
                 }
@@ -71,17 +73,43 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
             }
         });
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showProgressBar();
+                resetPassword();
+            }
+        });
+    }
+
+    private void resetPassword() {
+        if (validateForm(RESET_PWD)) {
+            mAuth.sendPasswordResetEmail(emailField.getText().toString())
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "Email sent.");
+                                hideProgressBar();
+                                Toast.makeText(SignInActivity.this, "Email containing password reset link has been sent to the above email id.", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+        }
+        hideProgressBar();
     }
 
     void showProgressBar() {
         progressBar.isIndeterminate();
         signIn.setVisibility(Button.GONE);
+        forgotPassword.setVisibility(Button.GONE);
         progressBar.setVisibility(ProgressBar.VISIBLE);
     }
 
     void hideProgressBar() {
         progressBar.setVisibility(ProgressBar.GONE);
         signIn.setVisibility(Button.VISIBLE);
+        forgotPassword.setVisibility(Button.VISIBLE);
     }
 
     @Override
@@ -136,6 +164,7 @@ public class SignInActivity extends AppCompatActivity {
                     } else {
                         //if user's email is not verified
                         Toast.makeText(SignInActivity.this, "Please verify your email first.", Toast.LENGTH_SHORT).show();
+                        hideProgressBar();
                     }
                 }
 
@@ -144,12 +173,14 @@ public class SignInActivity extends AppCompatActivity {
                     Toast.makeText(SignInActivity.this, "Interrupted by User!", Toast.LENGTH_SHORT).show();
                 }
             });
+        } else {
+            hideProgressBar();
+            Toast.makeText(this, "Please Sign-In first.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private boolean validateForm() {
+    private boolean validateForm(boolean status) {
         boolean valid = true;
-
         String email = emailField.getText().toString();
         if (TextUtils.isEmpty(email)) {
             emailField.setError("Required.");
@@ -157,16 +188,17 @@ public class SignInActivity extends AppCompatActivity {
         } else {
             emailField.setError(null);
         }
-
-        String password = passwordField.getText().toString();
-        if (TextUtils.isEmpty(password)) {
-            passwordField.setError("Required.");
-            valid = false;
-        } else if (password.length() < 6) {
-            passwordField.setError("Must be atleast 6 characters");
-            valid = false;
-        } else {
-            passwordField.setError(null);
+        if (!status) {
+            String password = passwordField.getText().toString();
+            if (TextUtils.isEmpty(password)) {
+                passwordField.setError("Required.");
+                valid = false;
+            } else if (password.length() < 6) {
+                passwordField.setError("Must be atleast 6 characters");
+                valid = false;
+            } else {
+                passwordField.setError(null);
+            }
         }
         return valid;
     }
