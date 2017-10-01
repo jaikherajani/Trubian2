@@ -5,14 +5,20 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.HashMap;
 
 public class AccountActivity extends AppCompatActivity {
 
     Button signOut;
     FirebaseAuth mAuth;
+    TextView enrollmentNumber;
+    EditText userName, userEmail, userPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +27,15 @@ public class AccountActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         signOut = findViewById(R.id.sign_out_button);
+        enrollmentNumber = findViewById(R.id.enrollment_number);
+        userName = findViewById(R.id.user_name);
+        userEmail = findViewById(R.id.user_email);
+
+        final HashMap<String, String> userValues = (HashMap<String, String>) getIntent().getSerializableExtra("user_data");
+
+        userEmail.setText(userValues.get("email"));
+        userName.setText(userValues.get("name"));
+        enrollmentNumber.setText(userValues.get("enrollment_number"));
 
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override

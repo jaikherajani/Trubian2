@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">trubian2</string>
+    <string name="app_name">Trubian</string>
 
     <!-- Strings related to signin and signup -->
     <string name="prompt_email">Email</string>
@@ -14,5 +14,11 @@
     <string name="prompt_user_name">User Name</string>
 
     <string name="action_sign_out">Sign Out</string>
+
+    <!--- Strings related to headings of every Android Activity -->
+    <string name="activity_account">Account</string>
+    <string name="activity_home">Home</string>
+    <string name="activity_signin">Sign-In</string>
+    <string name="activity_signup">Sign-Up</string>
 
 </resources>

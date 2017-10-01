@@ -12,16 +12,24 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignInActivity">
+        <activity
+            android:name=".SignInActivity"
+            android:label="@string/activity_signin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".AccountActivity"></activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:label="@string/activity_signup" />
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/activity_home" />
+        <activity
+            android:name=".AccountActivity"
+            android:label="@string/activity_account" />
     </application>
 
 </manifest>
