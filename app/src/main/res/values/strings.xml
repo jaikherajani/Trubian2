@@ -21,4 +21,10 @@
     <string name="activity_signin">Sign-In</string>
     <string name="activity_signup">Sign-Up</string>
 
+    <string name="prompt_current_password">Current Password</string>
+    <string name="prompt_new_password">New Password</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_reset_password">Reset Password</string>
+
 </resources>

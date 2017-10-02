@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,6 +14,16 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:orientation="vertical">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            fresco:placeholderImage="@drawable/face_black"
+            fresco:roundAsCircle="true"
+            fresco:roundingBorderColor="@color/Black"
+            fresco:roundingBorderWidth="3dp" />
 
         <TextView
             android:id="@+id/enrollment_number"
@@ -29,7 +40,6 @@
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/edit"
             android:drawableRight="@drawable/edit"
-            android:enabled="false"
             android:inputType="textPersonName"
             android:maxLines="1"
             android:singleLine="true"
@@ -41,24 +51,81 @@
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/edit"
             android:drawableRight="@drawable/edit"
-            android:enabled="false"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/Black" />
 
-        <EditText
-            android:id="@+id/user_password"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/edit"
-            android:drawableRight="@drawable/edit"
-            android:enabled="false"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/Black" />
+            android:textColorHint="@color/Black">
 
+            <EditText
+                android:id="@+id/user_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/edit"
+                android:drawableRight="@drawable/edit"
+                android:hint="@string/prompt_current_password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/Black" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <!--<android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/Black">
+
+            <EditText
+                android:id="@+id/user_new_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/edit"
+                android:drawableRight="@drawable/edit"
+                android:inputType="textPassword"
+                android:hint="@string/prompt_new_password"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/Black" />
+
+        </android.support.design.widget.TextInputLayout>-->
+
+        <Button
+            android:id="@+id/reset_password_button"
+            style="@style/AppTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:elevation="16dp"
+            android:text="@string/action_reset_password"
+            android:textColor="@color/White"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/save_button"
+            style="@style/AppTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:elevation="16dp"
+            android:text="@string/action_save"
+            android:textColor="@color/White"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/cancel_button"
+            style="@style/AppTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:elevation="16dp"
+            android:text="@string/action_cancel"
+            android:textColor="@color/White"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/sign_out_button"

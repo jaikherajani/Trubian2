@@ -19,7 +19,9 @@
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
-            fresco:placeholderImage="@drawable/truba" />
+            fresco:placeholderImage="@drawable/face_black"
+            fresco:roundingBorderColor="@color/Black"
+            fresco:roundingBorderWidth="3dp" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
