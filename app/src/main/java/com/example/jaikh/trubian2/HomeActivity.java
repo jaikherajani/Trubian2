@@ -34,6 +34,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //Set title of this activity
+        setTitle("Trubian");
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -61,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeActivity.this, AccountActivity.class);
                 intent.putExtra("user_data", userValues);
                 startActivity(intent);
+                /*HomeActivity.this.finish();*/
             }
         });
     }

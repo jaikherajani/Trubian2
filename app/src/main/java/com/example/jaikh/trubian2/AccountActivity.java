@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -35,13 +36,18 @@ public class AccountActivity extends AppCompatActivity {
     boolean status = false;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    HashMap<String, String> userValues = new HashMap<String, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
+        //stops keyboard from popping up automatically
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        //Set title of this activity
+        setTitle("Account");
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -57,7 +63,7 @@ public class AccountActivity extends AppCompatActivity {
         userPassword = findViewById(R.id.user_password);
         resetPassword = findViewById(R.id.reset_password_button);
 
-        final HashMap<String, String> userValues = (HashMap<String, String>) getIntent().getSerializableExtra("user_data");
+        userValues = (HashMap<String, String>) getIntent().getSerializableExtra("user_data");
 
         userEmail.setText(userValues.get("email"));
         userName.setText(userValues.get("name"));
@@ -67,7 +73,7 @@ public class AccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mAuth.signOut();
-                startActivity(new Intent(AccountActivity.this, SignInActivity.class));
+                startActivity(new Intent(AccountActivity.this, SignInActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                 Toast.makeText(AccountActivity.this, "User successfully signed-out!", Toast.LENGTH_SHORT).show();
                 AccountActivity.this.finish();
             }
@@ -115,6 +121,19 @@ public class AccountActivity extends AppCompatActivity {
                 displayButtons();
             }
         });*/
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //create an intent to previous activity and put the data into it
+                Intent intent = new Intent(this, HomeActivity.class);
+                intent.putExtra("user_values_map", userValues);
+                AccountActivity.this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean validateForm() {

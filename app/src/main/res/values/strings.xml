@@ -13,14 +13,8 @@
     <string name="prompt_enrollment_number">Enrollment Number</string>
     <string name="prompt_user_name">User Name</string>
 
+    <!--Strings related to the account management-->
     <string name="action_sign_out">Sign Out</string>
-
-    <!--- Strings related to headings of every Android Activity -->
-    <string name="activity_account">Account</string>
-    <string name="activity_home">Home</string>
-    <string name="activity_signin">Sign-In</string>
-    <string name="activity_signup">Sign-Up</string>
-
     <string name="prompt_current_password">Current Password</string>
     <string name="prompt_new_password">New Password</string>
     <string name="action_save">Save</string>
