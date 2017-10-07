@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class HomeActivity extends AppCompatActivity {
@@ -26,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
     TextView emailField, usernameField, enrollmentnumberField;
     SimpleDraweeView userPicture;
     ArrayList<String> itemList = new ArrayList<>();
+    ArrayList<Integer> imageList = new ArrayList<>();
     RecyclerView recyclerView;
     RecyclerAdapter mAdapter;
 
@@ -40,11 +42,10 @@ public class HomeActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        for (int i = 1; i <= 10; i++) {
-            itemList.add("item " + i);
-        }
+        Collections.addAll(itemList, "News Feed", "Notifications", "Time Table", "Calendar", "Resources", "Contacts", "About");
+        Collections.addAll(imageList, R.drawable.news_feed, R.drawable.notifications, R.drawable.time_table, R.drawable.calendar, R.drawable.resources, R.drawable.contacts, R.drawable.about);
 
-        mAdapter = new RecyclerAdapter(itemList);
+        mAdapter = new RecyclerAdapter(itemList, imageList);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         //recyclerView.hasFixedSize();

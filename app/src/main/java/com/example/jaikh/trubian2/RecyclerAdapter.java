@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+
 import java.util.ArrayList;
 
 /**
@@ -15,9 +17,11 @@ import java.util.ArrayList;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerHolder> {
 
     private ArrayList<String> itemNames;
+    private ArrayList<Integer> imageList;
 
-    public RecyclerAdapter(ArrayList<String> itemNames) {
+    public RecyclerAdapter(ArrayList<String> itemNames, ArrayList<Integer> imageList) {
         this.itemNames = itemNames;
+        this.imageList = imageList;
         for (String name : this.itemNames) {
             System.out.println("Construtor : " + name);
         }
@@ -33,7 +37,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     @Override
     public void onBindViewHolder(RecyclerHolder holder, int position) {
         holder.name.setText(itemNames.get(position));
-        System.out.println(itemNames.get(position));
+        holder.image.setImageResource(imageList.get(position));
     }
 
     @Override
@@ -45,10 +49,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public class RecyclerHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView name;
+        SimpleDraweeView image;
 
         public RecyclerHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.item_name);
+            image = itemView.findViewById(R.id.options_picture);
             //itemView.setOnClickListener(this);
         }
 
