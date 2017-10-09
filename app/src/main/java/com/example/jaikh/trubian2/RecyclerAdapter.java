@@ -1,10 +1,12 @@
 package com.example.jaikh.trubian2;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -35,7 +37,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     }
 
     @Override
-    public void onBindViewHolder(RecyclerHolder holder, int position) {
+    public void onBindViewHolder(RecyclerHolder holder, final int position) {
         holder.name.setText(itemNames.get(position));
         holder.image.setImageResource(imageList.get(position));
     }
@@ -55,12 +57,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             super(itemView);
             name = itemView.findViewById(R.id.item_name);
             image = itemView.findViewById(R.id.options_picture);
-            //itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            //Toast.makeText(view.getContext(), itemNames.get(getAdapterPosition())+" Clicked", Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(), itemNames.get(getAdapterPosition()) + " Clicked", Toast.LENGTH_SHORT).show();
+            switch (getAdapterPosition()) {
+                case 2:
+                    view.getContext().startActivity(new Intent(view.getContext(), TimeTableActivity.class));
+                    break;
+            }
         }
     }
 }

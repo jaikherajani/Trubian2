@@ -24,8 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
-import java.util.Map;
+import java.util.HashMap;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -155,17 +154,19 @@ public class SignInActivity extends AppCompatActivity {
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    Map<String, String> values = (Map<String, String>) dataSnapshot.getValue();
+                    HashMap<String, String> values = (HashMap<String, String>) dataSnapshot.getValue();
                     Log.d(TAG, "Link is " + databaseReference.toString());
                     Log.d(TAG, "Value is: " + values);
                     Log.d(TAG, "name is: " + values.get("name"));
                     Log.d(TAG, "e_key is: " + values.get("enrollment_number"));
                     Log.d(TAG, "email is: " + values.get("email"));
-                    intent.putExtra("user_values_map", (Serializable) values);
+                    intent.putExtra("user_values_map", values);
                     if (firebaseUser.isEmailVerified()) {
                         //if user has got his email verified
                         Toast.makeText(SignInActivity.this, "Signed in as " + firebaseUser.getEmail(), Toast.LENGTH_LONG).show();
                         hideProgressBar();
+                        trubian2 t2 = (trubian2) getApplicationContext();
+                        t2.setData(values);
                         startActivity(intent);
                         SignInActivity.this.finish();
                     } else {

@@ -26,7 +26,9 @@
         <activity
             android:name=".AccountActivity"
             android:parentActivityName=".HomeActivity" />
-        <activity android:name=".TimeTableActivity"></activity>
+        <activity
+            android:name=".TimeTableActivity"
+            android:parentActivityName=".HomeActivity" />
     </application>
 
 </manifest>
