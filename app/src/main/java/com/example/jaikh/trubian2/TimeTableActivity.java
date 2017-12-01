@@ -35,22 +35,23 @@ public class TimeTableActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Uri uri) {
                 // Got the download URL for 'users/me/profile.png'
-                /*Glide.with(getContext())
-                        .load(uri)
-                        .into(time_table_iv);
-                startDownload(uri);*/
                 System.out.println("download url - " + uri);
                 /*ImageRequest imageRequest = ImageRequestBuilder
                         .newBuilderWithSource(uri)
-                        .setSource(uri)
                         .setRotationOptions(RotationOptions.autoRotate())
-                        //.setImageDecodeOptions(decodeOptions)
-                        //.setAutoRotateEnabled(true)
-                        //.setLocalThumbnailPreviewsEnabled(true)
                         .setLowestPermittedRequestLevel(ImageRequest.RequestLevel.BITMAP_MEMORY_CACHE)
                         .setProgressiveRenderingEnabled(true)
                         //.setResizeOptions(new ResizeOptions(width, height))
-                        .build();*/
+                        .build();
+
+                System.out.println("imagerequest uri - "+imageRequest.getSourceUri());
+
+                DraweeController draweeController = Fresco.newDraweeControllerBuilder()
+                        .setImageRequest(imageRequest)
+                        .setImageRequest(ImageRequest.fromUri(uri))
+                        .build();
+                imageView.setController(draweeController);
+                imageView.setScrollContainer(true);*/
                 imageView.setImageURI(uri);
                 /*imageView.setController(
                         Fresco.newDraweeControllerBuilder()

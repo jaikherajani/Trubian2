@@ -21,4 +21,7 @@
     <string name="action_cancel">Cancel</string>
     <string name="action_reset_password">Reset Password</string>
 
+    <!--other strings-->
+    <string name="action_download">Download</string>
+
 </resources>
