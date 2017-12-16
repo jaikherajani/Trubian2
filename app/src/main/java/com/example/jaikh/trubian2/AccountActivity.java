@@ -75,7 +75,7 @@ public class AccountActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mAuth.signOut();
                 startActivity(new Intent(AccountActivity.this, SignInActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                //startActivity(new Intent(AccountActivity.this,SignInActivity.class));
+                //startActivity(new Intent(AccountActivity.this,com.example.jaikh.trubian2.com.example.jaikh.trubian2.SignInActivity.class));
                 Toast.makeText(AccountActivity.this, "User successfully signed-out!", Toast.LENGTH_SHORT).show();
                 AccountActivity.this.finish();
             }

@@ -29,9 +29,9 @@ import java.util.HashMap;
 public class SignInActivity extends AppCompatActivity {
 
     static final boolean RESET_PWD = true; //when form is validated only for resetting the password
-    static String TAG = "SignInActivity";
+    static String TAG = "com.example.jaikh.trubian2.com.example.jaikh.trubian2.SignInActivity";
     ProgressBar progressBar;
-    Button signIn, signUp, forgotPassword;
+    Button signIn, forgotPassword;
     EditText emailField, passwordField;
     FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;
@@ -49,7 +49,6 @@ public class SignInActivity extends AppCompatActivity {
         //binding UI
         progressBar = findViewById(R.id.login_progress);
         signIn = findViewById(R.id.sign_in_button);
-        signUp = findViewById(R.id.register_button);
         emailField = findViewById(R.id.email);
         passwordField = findViewById(R.id.password);
         forgotPassword = findViewById(R.id.reset_password_button);
@@ -71,12 +70,6 @@ public class SignInActivity extends AppCompatActivity {
                     signIn(emailField.getText().toString(), passwordField.getText().toString());
                     showProgressBar();
                 }
-            }
-        });
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
             }
         });
         forgotPassword.setOnClickListener(new View.OnClickListener() {
