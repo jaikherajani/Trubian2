@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Trubian</string>
 
     <!-- Strings related to signin and signup -->
     <string name="prompt_email">Email</string>
