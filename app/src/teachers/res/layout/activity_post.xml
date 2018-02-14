@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jaikh.trubian2.PostActivity">
+
+    <RelativeLayout
+        android:id="@+id/activity_post"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="15dp"
+            android:adjustViewBounds="true"
+            android:fitsSystemWindows="true"
+            android:scaleType="fitCenter"
+            app:srcCompat="@mipmap/add_btn" />
+
+        <EditText
+            android:id="@+id/titleField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageButton3"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:ems="10"
+            android:hint="Post Title...."
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/branchField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/titleField"
+            android:layout_alignLeft="@id/titleField"
+            android:layout_alignRight="@id/titleField"
+            android:layout_alignStart="@+id/titleField"
+            android:layout_below="@+id/titleField"
+            android:layout_marginTop="11dp"
+            android:ems="10"
+            android:hint="Post Branch...."
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/SubmitBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/Black"
+            android:text="Submit Post "
+            android:textColor="@color/cardview_light_background" />
+
+
+        <EditText
+            android:id="@+id/DescField"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignEnd="@+id/branchField"
+            android:layout_alignLeft="@id/branchField"
+            android:layout_alignRight="@id/branchField"
+            android:layout_alignStart="@+id/branchField"
+            android:layout_below="@+id/branchField"
+            android:layout_marginBottom="77dp"
+            android:layout_marginTop="27dp"
+            android:ems="10"
+            android:hint="Post Description"
+            android:inputType="textMultiLine" />
+
+    </RelativeLayout>
+</ScrollView>

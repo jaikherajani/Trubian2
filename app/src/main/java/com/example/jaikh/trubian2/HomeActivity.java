@@ -50,7 +50,7 @@ public class HomeActivity extends AppCompatActivity {
         mAdapter = new RecyclerAdapter(itemList, imageList);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        //recyclerView.hasFixedSize();
+        recyclerView.hasFixedSize();
         System.out.println("HomeActivity: " + mAdapter.getItemCount());
         recyclerView.setAdapter(mAdapter);
 

@@ -143,7 +143,7 @@ public class SignInActivity extends AppCompatActivity {
     public void updateUI(final FirebaseUser firebaseUser) {
         if (firebaseUser != null) {
             firebaseUser.reload();
-            databaseReference = firebaseDatabase.getReference("users/students/" + firebaseUser.getUid());
+            databaseReference = firebaseDatabase.getReference("users/teachers/" + firebaseUser.getUid());
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -164,7 +164,21 @@ public class SignInActivity extends AppCompatActivity {
                         SignInActivity.this.finish();
                     } else {
                         //if user's email is not verified
-                        Toast.makeText(SignInActivity.this, "Please verify your email first.", Toast.LENGTH_SHORT).show();
+                        firebaseUser.sendEmailVerification()
+                                .addOnCompleteListener(SignInActivity.this, new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        hideProgressBar();
+
+                                        if (task.isSuccessful()) {
+                                            //String enrollmentNumber = enrollmentNumberField.getText().toString();
+                                            Toast.makeText(SignInActivity.this,
+                                                    "Please verify your email first. Verification email sent to " + firebaseUser.getEmail(),
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                        //Toast.makeText(SignInActivity.this, "Please verify your email first.", Toast.LENGTH_SHORT).show();
                         hideProgressBar();
                     }
                 }

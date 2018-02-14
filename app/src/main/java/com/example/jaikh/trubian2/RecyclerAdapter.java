@@ -44,7 +44,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
     @Override
     public int getItemCount() {
-        System.out.println("size is - " + itemNames.size());
+        //System.out.println("size is - " + itemNames.size());
         return itemNames.size();
     }
 
@@ -64,6 +64,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         public void onClick(View view) {
             Toast.makeText(view.getContext(), itemNames.get(getAdapterPosition()) + " Clicked", Toast.LENGTH_SHORT).show();
             switch (getAdapterPosition()) {
+                case 0:
+                    view.getContext().startActivity(new Intent(view.getContext(), NewsFeedActivity.class));
+                    break;
                 case 2:
                     view.getContext().startActivity(new Intent(view.getContext(), TimeTableActivity.class));
                     break;
