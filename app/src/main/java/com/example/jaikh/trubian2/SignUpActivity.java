@@ -148,7 +148,7 @@ public class SignUpActivity extends AppCompatActivity {
             userNameField.setError("Required.");
             valid = false;
         } else if (username.length() < 3) {
-            userNameField.setError("User Name mus be atleast 3 characters long.");
+            userNameField.setError("User Name must be atleast 3 characters long.");
         } else {
             userNameField.setError(null);
         }

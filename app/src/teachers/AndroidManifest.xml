@@ -3,7 +3,8 @@
 
     <application>
         <activity android:name="com.example.jaikh.trubian2.NewsFeedActivity" />
-        <activity android:name="com.example.jaikh.trubian2.PostActivity"></activity>
+        <activity android:name="com.example.jaikh.trubian2.PostActivity" />
+        <activity android:name="com.example.jaikh.trubian2.SplashActivity"></activity>
     </application>
 
 </manifest>
