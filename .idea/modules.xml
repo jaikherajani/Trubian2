@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Trubian2.iml" filepath="$PROJECT_DIR$/Trubian2.iml" />
-      <module fileurl="file://D:\Trubian2\Trubian2.iml" filepath="D:\Trubian2\Trubian2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\Trubian2\app\app.iml" filepath="D:\Trubian2\app\app.iml" />
     </modules>
   </component>
 </project>

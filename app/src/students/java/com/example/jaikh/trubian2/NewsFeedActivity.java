@@ -57,7 +57,7 @@ public class NewsFeedActivity extends AppCompatActivity {
 
         FirebaseRecyclerOptions<Feed> options =
                 new FirebaseRecyclerOptions.Builder<Feed>()
-                        .setQuery(feedRef, parser)
+                        .setQuery(feedRef.orderByChild("time_stamp"), parser)
                         .build();
 
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Feed, FeedViewHolder>(options) {
@@ -83,17 +83,17 @@ public class NewsFeedActivity extends AppCompatActivity {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
                 super.onItemRangeInserted(positionStart, itemCount);
-                int friendlyMessageCount = mFirebaseAdapter.getItemCount();
-                int lastVisiblePosition =
-                        mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
+                //int friendlyMessageCount = mFirebaseAdapter.getItemCount();
+                //int firstVisiblePosition = mLinearLayoutManager.findFirstCompletelyVisibleItemPosition();
                 // If the recycler view is initially being loaded or the
                 // user is at the bottom of the list, scroll to the bottom
                 // of the list to show the newly added message.
-                if (lastVisiblePosition == -1 ||
+                /*if (lastVisiblePosition == -1 ||
                         (positionStart >= (friendlyMessageCount - 1) &&
                                 lastVisiblePosition == (positionStart - 1))) {
                     mFeedlist.scrollToPosition(positionStart);
-                }
+                }*/
+                mFeedlist.scrollToPosition(0);
             }
         });
 

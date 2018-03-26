@@ -23,7 +23,7 @@
             android:adjustViewBounds="true"
             android:fitsSystemWindows="true"
             android:scaleType="fitCenter"
-            app:srcCompat="@mipmap/add_btn" />
+            app:srcCompat="@drawable/ic_add_black_24dp" />
 
         <EditText
             android:id="@+id/titleField"
