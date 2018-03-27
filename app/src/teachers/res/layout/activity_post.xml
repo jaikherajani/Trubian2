@@ -82,5 +82,15 @@
             android:hint="Post Description"
             android:inputType="textMultiLine" />
 
+        <!-- Posting progress -->
+        <ProgressBar
+            android:id="@+id/posting_progress"
+            style="@style/AppTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:visibility="gone" />
+
     </RelativeLayout>
 </ScrollView>

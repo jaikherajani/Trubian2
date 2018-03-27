@@ -1,19 +1,18 @@
 package com.example.jaikh.trubian2;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -30,7 +29,7 @@ public class PostActivity extends AppCompatActivity {
     private Button mSubmitBtn;
     private Uri mImageUri=null;
     private StorageReference mStorage;
-    private ProgressDialog mProgress;
+    private ProgressBar mProgress;
     private DatabaseReference mDatabase;
     private String username;
     private static final int GALLERY_REQUEST=1;
@@ -48,7 +47,7 @@ public class PostActivity extends AppCompatActivity {
         mPostBranch= findViewById(R.id.branchField);
         mPostDesc= findViewById(R.id.DescField);
         mSubmitBtn= findViewById(R.id.SubmitBtn);
-        mProgress= new ProgressDialog(this,R.style.Theme_AppCompat_DayNight_Dialog);
+        mProgress = findViewById(R.id.posting_progress);
         trubian2 t2 = (trubian2) getApplicationContext();
         username = t2.getData().get("name");
         mSelectImage.setOnClickListener(new View.OnClickListener() {
@@ -70,34 +69,39 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void startPosting() {
-        mProgress.setMessage("Posting .....");
+        mProgress.setTag("Posting...");
 
         final String title_val=mPostTitle.getText().toString().trim();
         final String desc_val=mPostDesc.getText().toString().trim();
         final String branch_val=mPostBranch.getText().toString().trim();
         if(!TextUtils.isEmpty(title_val) && !TextUtils.isEmpty(desc_val) && !TextUtils.isEmpty(branch_val) && mImageUri!=null)
         {
-            mProgress.show();
+            mProgress.isIndeterminate();
+            mProgress.setVisibility(View.VISIBLE);
             StorageReference filepath = mStorage.child("Feed_Images").child(mImageUri.getLastPathSegment());
 
-            filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
-
-                    DatabaseReference newPost = mDatabase.push();
-                    newPost.child("title").setValue(title_val);
-                    newPost.child("branch").setValue(branch_val);
-                    newPost.child("desc").setValue(desc_val);
-                    newPost.child("by").setValue(username);
-                    newPost.child("on").setValue(new Date().getTime());
-                    newPost.child("time_stamp").setValue((1-new Date().getTime()));
-                    newPost.child("image").setValue(downloadUrl.toString());
-                    newPost.setPriority((new Date().getTime()));
-                    mProgress.dismiss();
-                    finish();
-                }
-            });
+            try {
+                filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                        DatabaseReference newPost = mDatabase.push();
+                        newPost.child("title").setValue(title_val);
+                        newPost.child("branch").setValue(branch_val);
+                        newPost.child("desc").setValue(desc_val);
+                        newPost.child("by").setValue(username);
+                        newPost.child("on").setValue(new Date().getTime());
+                        newPost.child("time_stamp").setValue((1 - new Date().getTime()));
+                        newPost.child("image").setValue(downloadUrl.toString());
+                        newPost.setPriority((new Date().getTime()));
+                        mProgress.setVisibility(View.GONE);
+                        finish();
+                    }
+                });
+            } catch (Exception e) {
+                mProgress.setVisibility(View.GONE);
+                Toast.makeText(this, "Something happened! Please try again.", Toast.LENGTH_SHORT).show();
+            }
 
         }
 
@@ -113,4 +117,5 @@ public class PostActivity extends AppCompatActivity {
             mSelectImage.setImageURI(mImageUri);
         }
     }
+
 }

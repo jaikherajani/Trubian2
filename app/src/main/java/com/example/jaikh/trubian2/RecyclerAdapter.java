@@ -70,6 +70,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
                 case 2:
                     view.getContext().startActivity(new Intent(view.getContext(), TimeTableActivity.class));
                     break;
+                case 3:
+                    view.getContext().startActivity(new Intent(view.getContext(), CalendarActivity.class));
+                    break;
+                case 4:
+                    view.getContext().startActivity(new Intent(view.getContext(), ResourcesActivity.class));
+                    break;
+                case 5:
+                    view.getContext().startActivity(new Intent(view.getContext(), ContactsActivity.class));
+                    break;
+                case 6:
+                    view.getContext().startActivity(new Intent(view.getContext(), AboutActivity.class));
+                    break;
             }
         }
     }
