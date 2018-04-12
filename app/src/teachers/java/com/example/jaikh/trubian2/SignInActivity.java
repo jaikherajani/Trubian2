@@ -53,9 +53,6 @@ public class SignInActivity extends AppCompatActivity {
         passwordField = findViewById(R.id.password);
         forgotPassword = findViewById(R.id.reset_password_button);
 
-        //Set title of this activity
-        setTitle("Sign-In");
-
         //firebase initialization
         mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();

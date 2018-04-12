@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/White"
     android:orientation="vertical"
-    android:padding="8dp"
     tools:context="com.example.jaikh.trubian2.HomeActivity">
 
     <include layout="@layout/first_item" />
@@ -14,7 +13,7 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="4dp"
         android:scrollbars="vertical" />
 
 </LinearLayout>

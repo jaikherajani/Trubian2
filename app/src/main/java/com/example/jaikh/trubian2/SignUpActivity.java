@@ -41,9 +41,6 @@ public class SignUpActivity extends AppCompatActivity {
         //stops keyboard from popping up automatically
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-        //Set title of this activity
-        setTitle("Sign-Up");
-
         mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("users/students");
