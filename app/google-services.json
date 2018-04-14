@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "339539538896",
+    "firebase_url": "https://trubian2-trubian2.firebaseio.com",
+    "project_id": "trubian2-trubian2",
+    "storage_bucket": "trubian2-trubian2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339539538896:android:a9a1cb9e839b36bb",
+        "android_client_info": {
+          "package_name": "com.example.jaikh.trubian2.students"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339539538896-kt7d0f2sf5i1sgjn2kur7lm28l4h8ohf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jaikh.trubian2.students",
+            "certificate_hash": "897094da294cf1c462b4a4f5db102489331a2655"
+          }
+        },
+        {
+          "client_id": "339539538896-dvbuc0q86rl007v62ieonqpgt82k5cd8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFZOoehkzU09LzkNJvVnfeiZqGOqyiLWQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339539538896-dvbuc0q86rl007v62ieonqpgt82k5cd8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339539538896:android:23e9de5d4847d531",
+        "android_client_info": {
+          "package_name": "com.example.jaikh.trubian2.teachers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339539538896-tinv0aacrf3bi7t0e5424h11c94s6qfs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jaikh.trubian2.teachers",
+            "certificate_hash": "897094da294cf1c462b4a4f5db102489331a2655"
+          }
+        },
+        {
+          "client_id": "339539538896-dvbuc0q86rl007v62ieonqpgt82k5cd8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFZOoehkzU09LzkNJvVnfeiZqGOqyiLWQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339539538896-dvbuc0q86rl007v62ieonqpgt82k5cd8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

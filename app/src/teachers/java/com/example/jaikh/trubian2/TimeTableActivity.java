@@ -4,8 +4,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
+import android.widget.Toast;
 
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -13,7 +15,7 @@ import com.google.firebase.storage.StorageReference;
 
 public class TimeTableActivity extends AppCompatActivity {
 
-    SimpleDraweeView imageView;
+    ImageView imageView;
     StorageReference firebaseStorage;
 
     @Override
@@ -36,32 +38,16 @@ public class TimeTableActivity extends AppCompatActivity {
             public void onSuccess(Uri uri) {
                 // Got the download URL for 'users/me/profile.png'
                 System.out.println("download url - " + uri);
-                /*ImageRequest imageRequest = ImageRequestBuilder
-                        .newBuilderWithSource(uri)
-                        .setRotationOptions(RotationOptions.autoRotate())
-                        .setLowestPermittedRequestLevel(ImageRequest.RequestLevel.BITMAP_MEMORY_CACHE)
-                        .setProgressiveRenderingEnabled(true)
-                        //.setResizeOptions(new ResizeOptions(width, height))
-                        .build();
-
-                System.out.println("imagerequest uri - "+imageRequest.getSourceUri());
-
-                DraweeController draweeController = Fresco.newDraweeControllerBuilder()
-                        .setImageRequest(imageRequest)
-                        .setImageRequest(ImageRequest.fromUri(uri))
-                        .build();
-                imageView.setController(draweeController);
-                imageView.setScrollContainer(true);*/
-                imageView.setImageURI(uri);
-                /*imageView.setController(
-                        Fresco.newDraweeControllerBuilder()
-                                .setImageRequest(imageRequest)
-                                .build());*/
+                System.out.println("download url - " + uri);
+                Glide.with(TimeTableActivity.this)
+                        .load(uri)
+                        .into(imageView);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle any errors
+                Toast.makeText(TimeTableActivity.this, "Failed to load time table.", Toast.LENGTH_SHORT).show();
             }
         });
     }

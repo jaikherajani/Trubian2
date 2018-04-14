@@ -36,10 +36,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CalendarActivity" />
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".ResourcesActivity" />
-        <activity android:name=".ContactsActivity"></activity>
+        <activity
+            android:name=".CalendarActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".AboutActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".ResourcesActivity"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".ContactsActivity"
+            android:parentActivityName=".HomeActivity" />
     </application>
 
 </manifest>
