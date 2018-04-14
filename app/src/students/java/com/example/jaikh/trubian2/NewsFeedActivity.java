@@ -33,6 +33,8 @@ public class NewsFeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_feed);
 
+        setTitle(getResources().getString(R.string.app_name)+" : News Feed");
+
         System.out.println("NewsFeedActivity");
 
         mFeedlist = findViewById(R.id.feed_list);

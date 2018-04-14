@@ -22,7 +22,7 @@ public class TimeTableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_time_table);
 
         //Set title of this activity
-        setTitle("Trubian");
+        setTitle(getResources().getString(R.string.app_name) + " : Time Table");
 
         imageView = findViewById(R.id.timetable);
         firebaseStorage = FirebaseStorage.getInstance().getReference("time_tables/");

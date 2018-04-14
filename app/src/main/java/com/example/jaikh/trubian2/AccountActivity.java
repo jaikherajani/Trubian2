@@ -47,7 +47,7 @@ public class AccountActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         //Set title of this activity
-        setTitle("Account");
+        setTitle(getResources().getString(R.string.app_name) + " : Account Settings");
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();

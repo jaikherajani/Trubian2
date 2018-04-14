@@ -38,11 +38,13 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        setTitle(getResources().getString(R.string.app_name) + " : Home");
+
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        Collections.addAll(itemList, "News Feed", "Notifications", "Time Table", "Calendar", "Resources", "Contacts", "About");
-        Collections.addAll(imageList, R.drawable.news_feed, R.drawable.notifications, R.drawable.time_table, R.drawable.calendar, R.drawable.resources, R.drawable.contacts, R.drawable.about);
+        Collections.addAll(itemList, "News Feed", "Time Table", "Calendar", "Resources", "Contacts", "About");
+        Collections.addAll(imageList, R.drawable.news_feed, R.drawable.time_table, R.drawable.calendar, R.drawable.resources, R.drawable.contacts, R.drawable.about);
         //Collections.addAll(activitiesList, "HomeActivity.class","HomeActivity.class","TimeTableActivity.class","HomeActivity.class","HomeActivity.class","HomeActivity.class","HomeActivity.class");
         mAdapter = new RecyclerAdapter(itemList, imageList);
         recyclerView = findViewById(R.id.recycler_view);

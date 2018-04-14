@@ -14,6 +14,8 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
+        setTitle(getResources().getString(R.string.app_name) + " : Calendar");
+
         WebView webView = findViewById(R.id.web_cal);
         WebSettings webViewSettings = webView.getSettings();
         CardView cv = findViewById(R.id.calendarcard);

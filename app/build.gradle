@@ -29,7 +29,7 @@ android {
     productFlavors {
         students {
             applicationId "com.example.jaikh.trubian2.students"
-            versionName "1.03-students"
+            versionName "1.1-students"
             // this boolean can be accessed in java classes by using BuildConfig class
             // and now you can identify if your app is the paid version or not
             buildConfigField "boolean", "ADMIN_VERSION", "false"
@@ -38,9 +38,9 @@ android {
         }
         teachers {
             applicationId "com.example.jaikh.trubian2.teachers"
-            versionName "1.03-teachers"
+            versionName "1.1-teachers"
             buildConfigField "boolean", "ADMIN_VERSION", "true"
-            resValue "string", "app_name", "Teacher"
+            resValue "string", "app_name", "Faculty"
             signingConfig signingConfigs.signingConfig
         }
     }
@@ -57,19 +57,19 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.google.firebase:firebase-auth:12.0.0'
+    implementation 'com.google.firebase:firebase-auth:12.0.1'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.google.firebase:firebase-database:12.0.0'
-    implementation 'com.google.firebase:firebase-storage:12.0.0'
-    implementation 'com.android.support:cardview-v7:27.1.0'
-    implementation 'com.android.support:recyclerview-v7:27.1.0'
+    implementation 'com.google.firebase:firebase-database:12.0.1'
+    implementation 'com.google.firebase:firebase-storage:12.0.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.android.support:appcompat-v7:27.1.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.facebook.fresco:fresco:1.8.1'
     testImplementation 'junit:junit:4.12'
-    implementation 'com.android.support:design:27.1.0'
+    implementation 'com.android.support:design:27.1.1'
     implementation 'com.github.deano2390:MaterialShowcaseView:1.2.0'
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'

@@ -39,6 +39,9 @@ public class PostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
+
+        setTitle(getResources().getString(R.string.app_name) + " : New Post");
+
         mStorage= FirebaseStorage.getInstance().getReference();
         mDatabase= FirebaseDatabase.getInstance().getReference().child("Feed");
 
