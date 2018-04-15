@@ -4,7 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
+import android.support.v7.widget.AppCompatImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -15,7 +15,7 @@ import com.google.firebase.storage.StorageReference;
 
 public class TimeTableActivity extends AppCompatActivity {
 
-    ImageView imageView;
+    AppCompatImageView imageView;
     StorageReference firebaseStorage;
 
     @Override

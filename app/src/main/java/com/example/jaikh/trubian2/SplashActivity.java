@@ -40,7 +40,10 @@ public class SplashActivity extends AppCompatActivity {
     public void updateUI(final FirebaseUser firebaseUser) {
         if (firebaseUser != null) {
             firebaseUser.reload();
-            databaseReference = firebaseDatabase.getReference("users/teachers/" + firebaseUser.getUid());
+            if (getResources().getString(R.string.app_name).equals("Faculty"))
+                databaseReference = firebaseDatabase.getReference("users/teachers/" + firebaseUser.getUid());
+            else
+                databaseReference = firebaseDatabase.getReference("users/students/" + firebaseUser.getUid());
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {

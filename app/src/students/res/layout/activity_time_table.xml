@@ -6,13 +6,13 @@
     android:background="@color/White"
     tools:context="com.example.jaikh.trubian2.TimeTableActivity">
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/timetable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:layout_margin="5dp"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop" />
+        android:scaleType="fitCenter" />
 
 </RelativeLayout>

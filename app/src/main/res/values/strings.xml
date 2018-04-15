@@ -22,5 +22,6 @@
 
     <!--other strings-->
     <string name="action_download">Download</string>
+    <string name="spinner_title">Batch</string>
 
 </resources>
