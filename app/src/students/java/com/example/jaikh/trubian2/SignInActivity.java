@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-public class SignInActivity extends AppCompatActivity {
+public class SignInActivity extends BaseActivity {
 
     static final boolean RESET_PWD = true; //when form is validated only for resetting the password
     static String TAG = "com.example.jaikh.trubian2.com.example.jaikh.trubian2.SignInActivity";

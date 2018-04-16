@@ -1,11 +1,9 @@
 package com.example.jaikh.trubian2;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -18,9 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
-
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
 
     static String TAG = "HomeActivity";
     FirebaseDatabase firebaseDatabase;
@@ -43,13 +39,13 @@ public class HomeActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        Collections.addAll(itemList, "News Feed", "Time Table", "Calendar", "Resources", "Contacts", "About");
-        Collections.addAll(imageList, R.drawable.news_feed, R.drawable.time_table, R.drawable.calendar, R.drawable.resources, R.drawable.contacts, R.drawable.about);
+        Collections.addAll(itemList, "News Feed", "Time Table", "Calendar", "Resources", "Contacts", "About Truba", "Maps & Directions", "Courses Offered", "MIS", "Others");
+        Collections.addAll(imageList, R.drawable.news_feed, R.drawable.time_table, R.drawable.calendar, R.drawable.resources, R.drawable.contacts, R.drawable.about, R.drawable.maps, R.drawable.courses, R.drawable.mis, R.drawable.others);
         //Collections.addAll(activitiesList, "HomeActivity.class","HomeActivity.class","TimeTableActivity.class","HomeActivity.class","HomeActivity.class","HomeActivity.class","HomeActivity.class");
         mAdapter = new RecyclerAdapter(itemList, imageList);
         recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.hasFixedSize();
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
+        //recyclerView.hasFixedSize();
         System.out.println("HomeActivity: " + mAdapter.getItemCount());
         recyclerView.setAdapter(mAdapter);
 
@@ -59,19 +55,17 @@ public class HomeActivity extends AppCompatActivity {
         emailField = findViewById(R.id.email);
         usernameField = findViewById(R.id.user_name);
         enrollmentnumberField = findViewById(R.id.enrollment_number);
-        userPicture = findViewById(R.id.user_picture);
+        /*userPicture = findViewById(R.id.user_picture);
         display(userValues);
 
         userPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this, AccountActivity.class));
-               /* HomeActivity.this.finish();*/
+               *//* HomeActivity.this.finish();*//*
             }
         });
 
-        //if(isFirstTime())
-        //{
         //App is launched first time
         new MaterialShowcaseView.Builder(this)
                 .setTarget(userPicture)
@@ -79,26 +73,13 @@ public class HomeActivity extends AppCompatActivity {
                 .setContentText("Click here to see your profile related settings")
                 .setDelay(500) // optional but starting animations immediately in onCreate can make them choppy
                 .singleUse("1") // provide a unique ID used to ensure it is only shown once
-                .show();
-        //}
+                .show();*/
+
     }
 
-    /*private boolean isFirstTime()
-    {
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-        boolean ranBefore = preferences.getBoolean("RanBefore", false);
-        if (!ranBefore) {
-            // first time
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("RanBefore", true);
-            editor.apply();
-        }
-        return !ranBefore;
-    }*/
-
-    void display(HashMap<String, String> userValues) {
+    /*void display(HashMap<String, String> userValues) {
         emailField.setText(userValues.get("email"));
         usernameField.setText(userValues.get("name"));
         enrollmentnumberField.setText(userValues.get("enrollment_number"));
-    }
+    }*/
 }

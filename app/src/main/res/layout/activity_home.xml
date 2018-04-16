@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context="com.example.jaikh.trubian2.HomeActivity">
 
-    <include layout="@layout/first_item" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"

@@ -1,9 +1,8 @@
 package com.example.jaikh.trubian2;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
-public class ContactsActivity extends AppCompatActivity {
+public class ContactsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

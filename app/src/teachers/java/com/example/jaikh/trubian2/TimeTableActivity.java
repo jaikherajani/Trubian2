@@ -3,11 +3,10 @@ package com.example.jaikh.trubian2;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.support.v7.widget.AppCompatImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -20,7 +19,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TimeTableActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class TimeTableActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
 
     AppCompatImageView imageView;
     StorageReference firebaseStorage;

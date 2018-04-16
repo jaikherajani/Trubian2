@@ -3,4 +3,18 @@
 
     <color name="Black">#000</color>
     <color name="White">#FFF</color>
+    <color name="PrimaryDark">#9E9E9E</color>
+    <!--first item card background color-->
+    <color name="FirstItem">#00B0FF</color>
+    <!--recyclerview items card background colors-->
+    <color name="rvc1">#FF1744</color>
+    <color name="rvc2">#651FFF</color>
+    <color name="rvc3">#00E676</color>
+    <color name="rvc4">#2979FF</color>
+    <color name="rvc5">#FF3D00</color>
+    <color name="rvc6">#F50057</color>
+    <color name="rvc7">#3D5AFE</color>
+    <color name="rvc8">#FF9100</color>
+    <color name="rvc9">#1DE9B6</color>
+    <color name="rvc10">#D500F9</color>
 </resources>

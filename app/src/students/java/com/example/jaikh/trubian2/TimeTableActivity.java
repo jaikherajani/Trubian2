@@ -13,7 +13,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class TimeTableActivity extends AppCompatActivity {
+public class TimeTableActivity extends BaseActivity {
 
     AppCompatImageView imageView;
     StorageReference firebaseStorage;
@@ -38,7 +38,7 @@ public class TimeTableActivity extends AppCompatActivity {
             public void onSuccess(Uri uri) {
                 // Got the download URL for 'users/me/profile.png'
                 System.out.println("download url - " + uri);
-                Glide.with(TimeTableActivity.this)
+                Glide.with(getApplicationContext())
                         .load(uri)
                         .into(imageView);
             }

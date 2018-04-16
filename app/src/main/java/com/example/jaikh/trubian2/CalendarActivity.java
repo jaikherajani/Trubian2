@@ -1,13 +1,12 @@
 package com.example.jaikh.trubian2;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-public class CalendarActivity extends AppCompatActivity {
+public class CalendarActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

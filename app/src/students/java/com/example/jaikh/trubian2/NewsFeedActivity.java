@@ -21,7 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class NewsFeedActivity extends AppCompatActivity {
+public class NewsFeedActivity extends BaseActivity {
 
     private RecyclerView mFeedlist;
     private DatabaseReference mDatabase;

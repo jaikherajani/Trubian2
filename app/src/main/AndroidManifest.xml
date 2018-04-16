@@ -40,7 +40,7 @@
             android:name=".CalendarActivity"
             android:parentActivityName=".HomeActivity" />
         <activity
-            android:name=".AboutActivity"
+            android:name=".OthersActivity"
             android:parentActivityName=".HomeActivity" />
         <activity
             android:name=".ResourcesActivity"
