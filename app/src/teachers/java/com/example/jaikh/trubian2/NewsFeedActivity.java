@@ -40,7 +40,7 @@ public class NewsFeedActivity extends BaseActivity {
         System.out.println("NewsFeedActivity");
 
         mFeedlist = findViewById(R.id.feed_list);
-        mFeedlist.setHasFixedSize(true);
+        //mFeedlist.setHasFixedSize(true);
         mLinearLayoutManager = new LinearLayoutManager(this);
         mLinearLayoutManager.setStackFromEnd(true);
 

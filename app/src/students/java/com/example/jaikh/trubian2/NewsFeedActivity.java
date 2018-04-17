@@ -3,7 +3,6 @@ package com.example.jaikh.trubian2;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
@@ -38,7 +37,7 @@ public class NewsFeedActivity extends BaseActivity {
         System.out.println("NewsFeedActivity");
 
         mFeedlist = findViewById(R.id.feed_list);
-        mFeedlist.setHasFixedSize(true);
+        //mFeedlist.setHasFixedSize(true);
         mLinearLayoutManager = new LinearLayoutManager(this);
         mLinearLayoutManager.setStackFromEnd(true);
 
