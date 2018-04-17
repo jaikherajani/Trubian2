@@ -39,7 +39,7 @@ public class HomeActivity extends BaseActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        Collections.addAll(itemList, "News Feed", "Time Table", "Calendar", "Resources", "Contacts", "About Truba", "Maps & Directions", "Courses Offered", "MIS", "Others");
+        Collections.addAll(itemList, "News Feed", "Time Table", "Calendar", "Resources", "Contacts", "About Truba", "Maps & Directions", "Courses Offered", "MIS", "About Us");
         Collections.addAll(imageList, R.drawable.news_feed, R.drawable.time_table, R.drawable.calendar, R.drawable.resources, R.drawable.contacts, R.drawable.about, R.drawable.maps, R.drawable.courses, R.drawable.mis, R.drawable.others);
         //Collections.addAll(activitiesList, "HomeActivity.class","HomeActivity.class","TimeTableActivity.class","HomeActivity.class","HomeActivity.class","HomeActivity.class","HomeActivity.class");
         mAdapter = new RecyclerAdapter(itemList, imageList);

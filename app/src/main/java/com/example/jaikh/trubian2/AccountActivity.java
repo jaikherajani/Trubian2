@@ -3,12 +3,12 @@ package com.example.jaikh.trubian2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +27,7 @@ import java.util.HashMap;
 public class AccountActivity extends BaseActivity {
 
     static String TAG = "AccountActivity";
-    Button signOut, save, cancel, resetPassword;
+    FloatingActionButton signOut, save, cancel, resetPassword;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     TextView enrollmentNumber;
@@ -88,6 +88,7 @@ public class AccountActivity extends BaseActivity {
                 enrollmentNumber.setText(userValues.get("enrollment_number"));
                 userPassword.setText("");
                 status = false;
+                finish();
             }
         });
 

@@ -1,13 +1,13 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White">
+    android:layout_gravity="fill_vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="8dp"
@@ -19,6 +19,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
             fresco:placeholderImage="@drawable/face_black"
+            fresco:roundAsCircle="true"
             fresco:roundingBorderColor="@color/Black"
             fresco:roundingBorderWidth="3dp" />
 
@@ -105,7 +106,7 @@
                 android:gravity="center_horizontal"
                 android:visibility="gone" />
 
-            <Button
+            <!--<Button
                 android:id="@+id/sign_up_button"
                 style="@style/AppTheme"
                 android:layout_width="match_parent"
@@ -114,10 +115,37 @@
                 android:elevation="16dp"
                 android:text="@string/action_verify_email"
                 android:textColor="@color/White"
-                android:textStyle="bold" />
+                android:textStyle="bold" />-->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/sign_up_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="123dp"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/FirstItem"
+                    android:src="@drawable/verify"
+                    app:backgroundTint="@color/FirstItem"
+                    app:elevation="4dp"
+                    app:fabSize="normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/sign_up_button"
+                    android:text="@string/action_verify_email"
+                    android:textColor="@color/Black" />
+
+            </LinearLayout>
 
         </RelativeLayout>
 
     </LinearLayout>
-</ScrollView>
+</RelativeLayout>
 

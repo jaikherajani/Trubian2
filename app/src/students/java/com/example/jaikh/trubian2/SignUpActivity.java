@@ -2,6 +2,7 @@ package com.example.jaikh.trubian2;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +27,7 @@ public class SignUpActivity extends BaseActivity {
 
     static String TAG = "SignUpActivity";
     ProgressBar progressBar;
-    Button verifyEmail;
+    FloatingActionButton verifyEmail;
     EditText emailField, passwordField, userNameField, enrollmentNumberField;
     FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;

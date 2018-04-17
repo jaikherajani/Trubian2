@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,9 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <com.facebook.drawee.view.SimpleDraweeView
@@ -31,30 +29,46 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:singleLine="true"
+            android:layout_marginVertical="16dp"
             android:textColor="@color/Black"
             android:textSize="24sp" />
 
-        <EditText
-            android:id="@+id/user_name"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/edit"
-            android:drawableRight="@drawable/edit"
-            android:inputType="textPersonName"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/Black" />
+            android:textColorHint="@color/Black">
 
-        <EditText
-            android:id="@+id/user_email"
+            <EditText
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/edit"
+                android:drawableRight="@drawable/edit"
+                android:hint="@string/prompt_user_name"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/Black" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/edit"
-            android:drawableRight="@drawable/edit"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/Black" />
+            android:textColorHint="@color/Black">
+
+            <EditText
+                android:id="@+id/user_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/edit"
+                android:drawableRight="@drawable/edit"
+                android:hint="@string/prompt_email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/Black" />
+        </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -94,7 +108,7 @@
 
         </android.support.design.widget.TextInputLayout>-->
 
-        <Button
+        <!--<Button
             android:id="@+id/reset_password_button"
             style="@style/AppTheme"
             android:layout_width="match_parent"
@@ -103,9 +117,118 @@
             android:elevation="16dp"
             android:text="@string/action_reset_password"
             android:textColor="@color/White"
-            android:textStyle="bold" />
+            android:textStyle="bold" />-->
 
-        <Button
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/reset_password_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/FirstItem"
+                    android:src="@drawable/reset"
+                    app:backgroundTint="@color/FirstItem"
+                    app:elevation="4dp"
+                    app:fabSize="normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_reset_password"
+                    android:textColor="@color/Black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/save_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/FirstItem"
+                    android:src="@drawable/save"
+                    app:backgroundTint="@color/FirstItem"
+                    app:elevation="4dp"
+                    app:fabSize="normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_save"
+                    android:textColor="@color/Black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/cancel_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/FirstItem"
+                    android:src="@drawable/cancel"
+                    app:backgroundTint="@color/FirstItem"
+                    app:elevation="4dp"
+                    app:fabSize="normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_cancel"
+                    android:textColor="@color/Black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/sign_out_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/FirstItem"
+                    android:src="@drawable/sign_out"
+                    app:backgroundTint="@color/FirstItem"
+                    app:elevation="4dp"
+                    app:fabSize="normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_sign_out"
+                    android:textColor="@color/Black" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--<Button
             android:id="@+id/save_button"
             style="@style/AppTheme"
             android:layout_width="match_parent"
@@ -114,9 +237,9 @@
             android:elevation="16dp"
             android:text="@string/action_save"
             android:textColor="@color/White"
-            android:textStyle="bold" />
+            android:textStyle="bold" />-->
 
-        <Button
+        <!--<Button
             android:id="@+id/cancel_button"
             style="@style/AppTheme"
             android:layout_width="match_parent"
@@ -125,9 +248,9 @@
             android:elevation="16dp"
             android:text="@string/action_cancel"
             android:textColor="@color/White"
-            android:textStyle="bold" />
+            android:textStyle="bold" />-->
 
-        <Button
+        <!--<Button
             android:id="@+id/sign_out_button"
             style="@style/AppTheme"
             android:layout_width="match_parent"
@@ -136,9 +259,9 @@
             android:elevation="16dp"
             android:text="@string/action_sign_out"
             android:textColor="@color/White"
-            android:textStyle="bold" />
+            android:textStyle="bold" />-->
 
     </LinearLayout>
 
-</ScrollView>
+</RelativeLayout>
 

@@ -18,7 +18,7 @@
     <string name="prompt_new_password">New Password</string>
     <string name="action_save">Save</string>
     <string name="action_cancel">Cancel</string>
-    <string name="action_reset_password">Reset Password</string>
+    <string name="action_reset_password">Reset\nPassword</string>
 
     <!--other strings-->
     <string name="action_download">Download</string>

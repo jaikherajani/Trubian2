@@ -143,7 +143,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://210.212.148.195/mis/")));
                     break;
                 case 10:
-                    view.getContext().startActivity(new Intent(view.getContext(), OthersActivity.class));
+                    view.getContext().startActivity(new Intent(view.getContext(), AboutUSActivity.class));
                     break;
             }
         }

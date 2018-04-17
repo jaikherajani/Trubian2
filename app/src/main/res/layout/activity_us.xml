@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            card_view:cardBackgroundColor="@color/White"
+            card_view:cardCornerRadius="5dp"
+            card_view:elevation="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:elevation="12dp"
+                    fresco:placeholderImage="@drawable/face_black"
+                    fresco:roundAsCircle="true" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Fariha Fatima"
+                    android:textColor="@color/Black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="0114CS141024"
+                    android:textColor="@color/Black" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            card_view:cardBackgroundColor="@color/White"
+            card_view:cardCornerRadius="5dp"
+            card_view:elevation="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:elevation="12dp"
+                    fresco:placeholderImage="@drawable/face_black"
+                    fresco:roundAsCircle="true" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Jai Kumar Kherajani"
+                    android:textColor="@color/Black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="0114CS141038"
+                    android:textColor="@color/Black" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/github"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            card_view:cardBackgroundColor="@color/FirstItem"
+            card_view:cardCornerRadius="5dp"
+            card_view:elevation="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:elevation="12dp"
+                    fresco:placeholderImage="@drawable/octocat"
+                    fresco:roundAsCircle="true" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="GitHub"
+                    android:textColor="@color/Black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Source Code"
+                    android:textColor="@color/Black" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
+        android:textAlignment="center"
+        android:textColor="@color/Black" />
+
+</RelativeLayout>
