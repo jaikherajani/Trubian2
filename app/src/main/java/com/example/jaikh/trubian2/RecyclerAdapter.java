@@ -1,6 +1,7 @@
 package com.example.jaikh.trubian2;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -133,6 +134,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     view.getContext().startActivity(new Intent(view.getContext(), ContactsActivity.class));
                     break;
                 case 6:
+                    view.getContext().startActivity(new Intent(view.getContext(), AboutTrubaActivity.class));
+                    break;
+                case 7:
+                    view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.co.in/maps/place/Truba+Bhopal/@23.3084532,77.3874753,20.69z/data=!4m5!3m4!1s0x397c6884e0b907f7:0x396d52f7f5065b5b!8m2!3d23.3085227!4d77.3876095")).setPackage("com.google.android.apps.maps"));
+                    break;
+                case 9:
+                    view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://210.212.148.195/mis/")));
+                    break;
+                case 10:
                     view.getContext().startActivity(new Intent(view.getContext(), OthersActivity.class));
                     break;
             }

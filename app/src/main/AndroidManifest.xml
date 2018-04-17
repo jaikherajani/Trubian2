@@ -48,6 +48,7 @@
         <activity
             android:name=".ContactsActivity"
             android:parentActivityName=".HomeActivity" />
+        <activity android:name=".AboutTrubaActivity"></activity>
     </application>
 
 </manifest>

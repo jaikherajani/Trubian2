@@ -1,16 +1,17 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White">
+    android:layout_gravity="fill_vertical">
 
     <LinearLayout
+        android:id="@+id/linearlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="8dp"
         tools:context="com.example.jaikh.trubian2.SignInActivity">
 
         <com.facebook.drawee.view.SimpleDraweeView
@@ -51,7 +52,8 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="@color/Black" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -69,31 +71,62 @@
                 android:gravity="center_horizontal"
                 android:visibility="gone" />
 
-            <Button
-                android:id="@+id/sign_in_button"
-                style="@style/AppTheme"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:elevation="16dp"
-                android:text="@string/action_sign_in"
-                android:textColor="@color/White"
-                android:textStyle="bold" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/reset_password_button"
-                style="@style/AppTheme"
-                android:layout_width="match_parent"
+                <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/sign_in_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/FirstItem"
+                    android:src="@drawable/forward"
+                    app:backgroundTint="@color/FirstItem"
+                    app:elevation="4dp"
+                    app:fabSize="normal" />
+
+                <TextView
+                    android:id="@+id/si"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_sign_in"
+                    android:textColor="@color/Black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/sign_in_button"
-                android:layout_marginTop="8dp"
-                android:elevation="16dp"
-                android:text="@string/action_forgot_password"
-                android:textColor="@color/White"
-                android:textStyle="bold" />
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/reset_password_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/FirstItem"
+                    android:src="@drawable/help"
+                    app:backgroundTint="@color/FirstItem"
+                    app:elevation="4dp"
+                    app:fabSize="normal" />
+
+                <TextView
+                    android:id="@+id/fp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_forgot_password"
+                    android:textColor="@color/Black" />
+            </LinearLayout>
 
         </RelativeLayout>
 
     </LinearLayout>
-
-</ScrollView>
+</RelativeLayout>

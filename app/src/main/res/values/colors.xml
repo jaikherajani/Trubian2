@@ -17,4 +17,6 @@
     <color name="rvc8">#FF9100</color>
     <color name="rvc9">#1DE9B6</color>
     <color name="rvc10">#D500F9</color>
+    <!--fab button color-->
+    <color name="fab_color">#76FF03</color>
 </resources>

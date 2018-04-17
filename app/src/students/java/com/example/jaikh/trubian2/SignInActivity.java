@@ -3,7 +3,7 @@ package com.example.jaikh.trubian2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.FloatingActionButton;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,7 +32,8 @@ public class SignInActivity extends BaseActivity {
     static final boolean RESET_PWD = true; //when form is validated only for resetting the password
     static String TAG = "com.example.jaikh.trubian2.com.example.jaikh.trubian2.SignInActivity";
     ProgressBar progressBar;
-    Button signIn, signUp, forgotPassword;
+    TextView fp, si;
+    FloatingActionButton signIn, signUp, forgotPassword;
     EditText emailField, passwordField;
     FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;
@@ -55,6 +57,8 @@ public class SignInActivity extends BaseActivity {
         emailField = findViewById(R.id.email);
         passwordField = findViewById(R.id.password);
         forgotPassword = findViewById(R.id.reset_password_button);
+        fp = findViewById(R.id.fp);
+        si = findViewById(R.id.si);
 
         //firebase initialization
         mAuth = FirebaseAuth.getInstance();
@@ -108,6 +112,8 @@ public class SignInActivity extends BaseActivity {
         progressBar.isIndeterminate();
         signIn.setVisibility(Button.GONE);
         forgotPassword.setVisibility(Button.GONE);
+        si.setVisibility(Button.GONE);
+        fp.setVisibility(Button.GONE);
         progressBar.setVisibility(ProgressBar.VISIBLE);
     }
 
@@ -115,6 +121,8 @@ public class SignInActivity extends BaseActivity {
         progressBar.setVisibility(ProgressBar.GONE);
         signIn.setVisibility(Button.VISIBLE);
         forgotPassword.setVisibility(Button.VISIBLE);
+        si.setVisibility(Button.VISIBLE);
+        fp.setVisibility(Button.VISIBLE);
     }
 
     @Override
