@@ -173,6 +173,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/register_button"
                 android:text="@string/action_register"
+                android:id="@+id/rb"
                 android:textColor="@color/Black" />
 
         </LinearLayout>

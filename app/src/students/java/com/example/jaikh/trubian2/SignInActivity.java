@@ -32,7 +32,7 @@ public class SignInActivity extends BaseActivity {
     static final boolean RESET_PWD = true; //when form is validated only for resetting the password
     static String TAG = "com.example.jaikh.trubian2.com.example.jaikh.trubian2.SignInActivity";
     ProgressBar progressBar;
-    TextView fp, si;
+    TextView fp, si, rb;
     FloatingActionButton signIn, signUp, forgotPassword;
     EditText emailField, passwordField;
     FirebaseAuth mAuth;
@@ -59,6 +59,7 @@ public class SignInActivity extends BaseActivity {
         forgotPassword = findViewById(R.id.reset_password_button);
         fp = findViewById(R.id.fp);
         si = findViewById(R.id.si);
+        rb = findViewById(R.id.rb);
 
         //firebase initialization
         mAuth = FirebaseAuth.getInstance();
@@ -110,19 +111,23 @@ public class SignInActivity extends BaseActivity {
 
     void showProgressBar() {
         progressBar.isIndeterminate();
-        signIn.setVisibility(Button.GONE);
-        forgotPassword.setVisibility(Button.GONE);
-        si.setVisibility(Button.GONE);
-        fp.setVisibility(Button.GONE);
+        signIn.setVisibility(View.GONE);
+        forgotPassword.setVisibility(View.GONE);
+        si.setVisibility(View.GONE);
+        fp.setVisibility(View.GONE);
+        rb.setVisibility(View.GONE);
+        signUp.setVisibility(View.GONE);
         progressBar.setVisibility(ProgressBar.VISIBLE);
     }
 
     void hideProgressBar() {
         progressBar.setVisibility(ProgressBar.GONE);
-        signIn.setVisibility(Button.VISIBLE);
-        forgotPassword.setVisibility(Button.VISIBLE);
-        si.setVisibility(Button.VISIBLE);
-        fp.setVisibility(Button.VISIBLE);
+        signIn.setVisibility(View.VISIBLE);
+        forgotPassword.setVisibility(View.VISIBLE);
+        si.setVisibility(View.VISIBLE);
+        fp.setVisibility(View.VISIBLE);
+        rb.setVisibility(View.VISIBLE);
+        signUp.setVisibility(View.VISIBLE);
     }
 
     @Override
