@@ -5,9 +5,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.jaikh.trubian2.ContactsActivity">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="This page will show contact details of important people." />
+        android:layout_margin="4dp"
+        android:scrollbars="vertical" />
 
 </LinearLayout>

@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            card_view:cardBackgroundColor="@color/White"
+            card_view:cardBackgroundColor="@color/rvc1"
             card_view:cardCornerRadius="5dp"
             card_view:elevation="16dp">
 
@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            card_view:cardBackgroundColor="@color/White"
+            card_view:cardBackgroundColor="@color/rvc1"
             card_view:cardCornerRadius="5dp"
             card_view:elevation="16dp">
 

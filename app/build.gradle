@@ -5,7 +5,7 @@ android {
         signingConfig {
             keyAlias 'trubian2releasekeys'
             keyPassword 'trubian2releasekeys2017'
-            storeFile file('C:/Users/jaikh/OneDrive/trubian2_keystore/trubian2.jks')
+            storeFile file('C:/Users/Jai/OneDrive/trubian2_keystore/trubian2.jks')
             storePassword 'trubian22017'
         }
     }
@@ -15,7 +15,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
-        versionName "1.03"
+        versionName "2.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.signingConfig
@@ -29,7 +29,7 @@ android {
     productFlavors {
         students {
             applicationId "com.example.jaikh.trubian2.students"
-            versionName "1.1-students"
+            versionName "2.0-students"
             // this boolean can be accessed in java classes by using BuildConfig class
             // and now you can identify if your app is the paid version or not
             buildConfigField "boolean", "ADMIN_VERSION", "false"
@@ -38,7 +38,7 @@ android {
         }
         teachers {
             applicationId "com.example.jaikh.trubian2.teachers"
-            versionName "1.1-teachers"
+            versionName "2.0-teachers"
             buildConfigField "boolean", "ADMIN_VERSION", "true"
             resValue "string", "app_name", "Faculty"
             signingConfig signingConfigs.signingConfig
