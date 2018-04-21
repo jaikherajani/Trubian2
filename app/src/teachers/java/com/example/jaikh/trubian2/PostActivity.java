@@ -3,11 +3,13 @@ package com.example.jaikh.trubian2;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -25,13 +27,14 @@ public class PostActivity extends BaseActivity {
     private EditText mPostTitle;
     private EditText mPostBranch;
     private EditText mPostDesc;
-    private Button mSubmitBtn;
+    private FloatingActionButton mSubmitBtn;
     private Uri mImageUri=null;
     private StorageReference mStorage;
     private ProgressBar mProgress;
     private DatabaseReference mDatabase;
     private String username;
     private static final int GALLERY_REQUEST=1;
+    LinearLayout container;
 
 
     @Override
@@ -68,6 +71,7 @@ public class PostActivity extends BaseActivity {
             }
         });
 
+        container = findViewById(R.id.post_button_container);
     }
 
     private void startPosting() {
@@ -80,6 +84,8 @@ public class PostActivity extends BaseActivity {
         {
             mProgress.isIndeterminate();
             mProgress.setVisibility(View.VISIBLE);
+            container.setVisibility(View.GONE);
+
             StorageReference filepath = mStorage.child("Feed_Images").child(mImageUri.getLastPathSegment());
 
             try {
@@ -102,6 +108,7 @@ public class PostActivity extends BaseActivity {
                 });
             } catch (Exception e) {
                 mProgress.setVisibility(View.GONE);
+                container.setVisibility(View.VISIBLE);
                 Toast.makeText(this, "Something happened! Please try again.", Toast.LENGTH_SHORT).show();
             }
 

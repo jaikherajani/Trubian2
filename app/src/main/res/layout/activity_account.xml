@@ -20,6 +20,7 @@
             android:layout_margin="16dp"
             fresco:placeholderImage="@drawable/face_black"
             fresco:roundAsCircle="true"
+            android:id="@+id/picture"
             fresco:roundingBorderColor="@color/Black"
             fresco:roundingBorderWidth="3dp" />
 
@@ -119,10 +120,20 @@
             android:textColor="@color/White"
             android:textStyle="bold" />-->
 
+        <ProgressBar
+            android:id="@+id/progress"
+            style="@style/AppTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:visibility="gone" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:id="@+id/container"
             android:weightSum="4">
 
             <LinearLayout

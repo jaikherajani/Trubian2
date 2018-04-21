@@ -1,5 +1,7 @@
 package com.example.jaikh.trubian2;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -12,13 +14,18 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,11 +34,16 @@ public class SignUpActivity extends BaseActivity {
 
     static String TAG = "SignUpActivity";
     ProgressBar progressBar;
+    static final int GALLERY_REQUEST = 1;
+    SimpleDraweeView image;
     FloatingActionButton verifyEmail;
     EditText emailField, passwordField, userNameField, enrollmentNumberField;
+    StorageReference mStorage;
     FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    String imageURI = "NA";
+    private Uri mImageUri = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +58,21 @@ public class SignUpActivity extends BaseActivity {
         mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("users/students");
+        mStorage = FirebaseStorage.getInstance().getReference();
 
         emailField = findViewById(R.id.email);
         passwordField = findViewById(R.id.password);
         userNameField = findViewById(R.id.user_name);
         enrollmentNumberField = findViewById(R.id.enrollment_number);
+        image = findViewById(R.id.picture);
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                galleryIntent.setType("image/*");
+                startActivityForResult(galleryIntent, GALLERY_REQUEST);
+            }
+        });
 
         progressBar = findViewById(R.id.signup_progress);
         verifyEmail = findViewById(R.id.sign_up_button);
@@ -79,6 +101,7 @@ public class SignUpActivity extends BaseActivity {
     private void createAccount(String email, String password) {
         Log.d(TAG, "createAccount:" + email);
         if (!validateForm()) {
+            Toast.makeText(this, "Oh Snap! something happened.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -103,7 +126,6 @@ public class SignUpActivity extends BaseActivity {
                         }
 
                         // [START_EXCLUDE]
-                        hideProgressBar();
                         // [END_EXCLUDE]
                     }
                 });
@@ -175,22 +197,40 @@ public class SignUpActivity extends BaseActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         // [START_EXCLUDE]
                         // Re-enable button
-                        hideProgressBar();
-
                         if (task.isSuccessful()) {
-                            String enrollmentNumber = enrollmentNumberField.getText().toString();
-                            Toast.makeText(SignUpActivity.this,
-                                    "Verification email sent to " + user.getEmail(),
-                                    Toast.LENGTH_SHORT).show();
-                            Map<String, String> userData = new HashMap<String, String>();
-                            userData.put("name", userNameField.getText().toString());
-                            userData.put("enrollment_number", enrollmentNumber);
-                            userData.put("email", mAuth.getCurrentUser().getEmail());
-                            //databaseReference = databaseReference.child(enrollmentNumber.substring(4,5)+"/"+enrollmentNumber.substring(6,8)+"/"+enrollmentNumber);
-                            databaseReference = databaseReference.child(user.getUid());
-                            databaseReference.setValue(userData);
-                            mAuth.signOut();
-                            SignUpActivity.this.finish();
+                            if (mImageUri != null) {
+                                StorageReference filepath = mStorage.child("User_Images/" + user.getUid() + "/profile_picture.jpeg");
+                                try {
+                                    filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                            Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                                            imageURI = downloadUrl.toString();
+                                            System.out.println("imageURI " + imageURI);
+
+                                            String enrollmentNumber = enrollmentNumberField.getText().toString();
+                                            Toast.makeText(SignUpActivity.this,
+                                                    "Verification email sent to " + user.getEmail(),
+                                                    Toast.LENGTH_SHORT).show();
+                                            Map<String, String> userData = new HashMap<String, String>();
+                                            userData.put("name", userNameField.getText().toString());
+                                            userData.put("enrollment_number", enrollmentNumber);
+                                            userData.put("email", mAuth.getCurrentUser().getEmail());
+                                            userData.put("picture", imageURI);
+                                            //databaseReference = databaseReference.child(enrollmentNumber.substring(4,5)+"/"+enrollmentNumber.substring(6,8)+"/"+enrollmentNumber);
+                                            databaseReference = databaseReference.child(user.getUid());
+                                            databaseReference.setValue(userData);
+                                            hideProgressBar();
+                                            mAuth.signOut();
+                                            SignUpActivity.this.finish();
+                                        }
+                                    });
+                                } catch (Exception e) {
+                                    hideProgressBar();
+                                    Toast.makeText(SignUpActivity.this, "Can not create account! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
                         } else {
                             Log.e(TAG, "sendEmailVerification", task.getException());
                             Toast.makeText(SignUpActivity.this,
@@ -201,5 +241,15 @@ public class SignUpActivity extends BaseActivity {
                     }
                 });
         // [END send_email_verification]
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
+            mImageUri = data.getData();
+            image.setImageURI(mImageUri);
+        }
     }
 }

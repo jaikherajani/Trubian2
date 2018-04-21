@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.TextView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +22,6 @@ public class HomeActivity extends BaseActivity {
     DatabaseReference databaseReference;
     FirebaseUser firebaseUser;
     TextView emailField, usernameField, enrollmentnumberField;
-    SimpleDraweeView userPicture;
     ArrayList<String> itemList = new ArrayList<>();
     ArrayList<Integer> imageList = new ArrayList<>();
     RecyclerView recyclerView;
@@ -42,7 +40,7 @@ public class HomeActivity extends BaseActivity {
         Collections.addAll(itemList, "News Feed", "Time Table", "Calendar", "Resources", "Contacts", "About Truba", "Maps & Directions", "Courses Offered", "MIS", "About Us");
         Collections.addAll(imageList, R.drawable.news_feed, R.drawable.time_table, R.drawable.calendar, R.drawable.resources, R.drawable.contacts, R.drawable.about, R.drawable.maps, R.drawable.courses, R.drawable.mis, R.drawable.others);
         //Collections.addAll(activitiesList, "HomeActivity.class","HomeActivity.class","TimeTableActivity.class","HomeActivity.class","HomeActivity.class","HomeActivity.class","HomeActivity.class");
-        mAdapter = new RecyclerAdapter(itemList, imageList);
+        mAdapter = new RecyclerAdapter(HomeActivity.this, itemList, imageList);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
         //recyclerView.hasFixedSize();
@@ -55,6 +53,7 @@ public class HomeActivity extends BaseActivity {
         emailField = findViewById(R.id.email);
         usernameField = findViewById(R.id.user_name);
         enrollmentnumberField = findViewById(R.id.enrollment_number);
+        System.out.println("HomeActivity : User Picture : " + userValues.get("picture"));
         /*userPicture = findViewById(R.id.user_picture);
         display(userValues);
 

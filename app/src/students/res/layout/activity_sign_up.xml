@@ -20,6 +20,7 @@
             android:layout_margin="16dp"
             fresco:placeholderImage="@drawable/face_black"
             fresco:roundAsCircle="true"
+            android:id="@+id/picture"
             fresco:roundingBorderColor="@color/Black"
             fresco:roundingBorderWidth="3dp" />
 

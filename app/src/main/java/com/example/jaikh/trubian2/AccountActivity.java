@@ -1,6 +1,9 @@
 package com.example.jaikh.trubian2;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -10,10 +13,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
@@ -21,6 +28,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 
@@ -32,10 +42,17 @@ public class AccountActivity extends BaseActivity {
     FirebaseUser mUser;
     TextView enrollmentNumber;
     EditText userName, userEmail, userPassword;
-    boolean status = false;
+    static final int GALLERY_REQUEST = 1;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     HashMap<String, String> userValues = new HashMap<String, String>();
+    String status = "nothing";
+    SimpleDraweeView image;
+    String oiu, niu;
+    Uri mImageUri = null;
+    StorageReference mStorage;
+    ProgressBar progressBar;
+    LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +68,11 @@ public class AccountActivity extends BaseActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("users/students").child(mUser.getUid());
+        if (getResources().getString(R.string.app_name).equals("Student"))
+            databaseReference = firebaseDatabase.getReference("users/students").child(mUser.getUid());
+        else
+            databaseReference = firebaseDatabase.getReference("users/teachers").child(mUser.getUid());
+        mStorage = FirebaseStorage.getInstance().getReference();
 
         signOut = findViewById(R.id.sign_out_button);
         save = findViewById(R.id.save_button);
@@ -61,6 +82,9 @@ public class AccountActivity extends BaseActivity {
         userEmail = findViewById(R.id.user_email);
         userPassword = findViewById(R.id.user_password);
         resetPassword = findViewById(R.id.reset_password_button);
+        image = findViewById(R.id.picture);
+        progressBar = findViewById(R.id.progress);
+        linearLayout = findViewById(R.id.container);
 
         trubian2 t2 = (trubian2) getApplicationContext();
         userValues = t2.getData();
@@ -68,6 +92,12 @@ public class AccountActivity extends BaseActivity {
         userEmail.setText(userValues.get("email"));
         userName.setText(userValues.get("name"));
         enrollmentNumber.setText(userValues.get("enrollment_number"));
+        oiu = userValues.get("picture");
+        niu = oiu;
+        System.out.println("Picture from hashmap : " + oiu);
+        if (!oiu.equals("NA")) {
+            image.setImageURI(oiu);
+        }
 
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +117,6 @@ public class AccountActivity extends BaseActivity {
                 userName.setText(userValues.get("name"));
                 enrollmentNumber.setText(userValues.get("enrollment_number"));
                 userPassword.setText("");
-                status = false;
                 finish();
             }
         });
@@ -96,8 +125,24 @@ public class AccountActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if (validateForm()) {
-                    authenticateUser();
-
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AccountActivity.this);
+                    builder.setMessage("Are you sure? This is an irreversible action.");
+                    // Add the buttons
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User clicked OK button
+                            showProgress();
+                            authenticateUser();
+                        }
+                    });
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+                    // Create the AlertDialog
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
             }
         });
@@ -110,10 +155,9 @@ public class AccountActivity extends BaseActivity {
         resetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                status = true;
+                status = "reset";
                 if (validateForm()) {
                     authenticateUser();
-
                 }
             }
         });
@@ -123,6 +167,25 @@ public class AccountActivity extends BaseActivity {
                 displayButtons();
             }
         });*/
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                galleryIntent.setType("image/*");
+                startActivityForResult(galleryIntent, GALLERY_REQUEST);
+            }
+        });
+    }
+
+    void showProgress() {
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.VISIBLE);
+        linearLayout.setVisibility(View.GONE);
+    }
+
+    void hideProgress() {
+        progressBar.setVisibility(View.GONE);
+        linearLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -181,60 +244,52 @@ public class AccountActivity extends BaseActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "User re-authenticated.");
-                            if (status) {
+                            if (status.equals("reset")) {
                                 mAuth.sendPasswordResetEmail(mUser.getEmail())
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
                                                     Log.d(TAG, "Email sent.");
-                                                    status = false;
+                                                    status = "";
                                                 }
                                             }
                                         });
+                                hideProgress();
                                 mAuth.signOut();
                                 startActivity(new Intent(AccountActivity.this, SignInActivity.class));
                                 Toast.makeText(AccountActivity.this, "Please Sign-In again!", Toast.LENGTH_SHORT).show();
                                 AccountActivity.this.finish();
                                 return;
                             } else {
-                                if (!mUser.getEmail().equals(userEmail.getText().toString())) {
-                                    mUser.updateEmail(userEmail.getText().toString());
-                                    mUser.sendEmailVerification()
-                                            .addOnCompleteListener(AccountActivity.this, new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    // [START_EXCLUDE]
-                                                    // Re-enable button
-                                                    if (task.isSuccessful()) {
-                                                        Toast.makeText(AccountActivity.this,
-                                                                "Verification email sent !",
-                                                                Toast.LENGTH_SHORT).show();
-                                                        databaseReference.child("email").setValue(userEmail.getText().toString());
-                                                /*mAuth.signOut();
-                                                AccountActivity.this.finish();*/
-                                                    } else {
-                                                        Log.e(TAG, "sendEmailVerification", task.getException());
-                                                        Toast.makeText(AccountActivity.this,
-                                                                "Failed to send verification email. Reason - " + task.getException(),
-                                                                Toast.LENGTH_LONG).show();
-                                                    }
-                                                    // [END_EXCLUDE]
-                                                }
-                                            });
-                                    // [END send_email_verification]
+                                if (!oiu.equals(niu)) {
+                                    System.out.println("inside image change operation");
+                                    StorageReference filepath = mStorage.child("User_Images/" + mUser.getUid() + "/profile_picture.jpeg");
+                                    try {
+                                        filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                            @Override
+                                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                                Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                                                niu = downloadUrl.toString();
+                                                databaseReference.child("picture").setValue(niu);
+                                                userValues.put("picture", niu);
+                                                proceedFurther();
+                                    /*//mAuth.signOut();
+                                    startActivity(new Intent(AccountActivity.this, HomeActivity.class));
+                                    //Toast.makeText(AccountActivity.this, "Please Sign-In again!", Toast.LENGTH_SHORT).show();
+                                    AccountActivity.this.finish();*/
+                                            }
+                                        });
+                                    } catch (Exception e) {
+                                        Toast.makeText(AccountActivity.this, "Failed to upload profile picture!", Toast.LENGTH_SHORT).show();
+                                        hideProgress();
+                                    }
+                                    System.out.println("new image uri : " + niu);
                                 }
-                                if (!databaseReference.child("name").getKey().equals(userName.getText().toString())) {
-                                    Log.d(TAG, databaseReference.child("name").getKey());
-                                    databaseReference.child("name").setValue(userName.getText().toString());
-                                }
-                                mAuth.signOut();
-                                startActivity(new Intent(AccountActivity.this, SignInActivity.class));
-                                Toast.makeText(AccountActivity.this, "Please Sign-In again!", Toast.LENGTH_SHORT).show();
-                                AccountActivity.this.finish();
                             }
                         } else {
                             // If sign in fails, display a message to the user.
+                            hideProgress();
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(AccountActivity.this, "Authentication failed. Reason - " + task.getException(),
                                     Toast.LENGTH_LONG).show();
@@ -244,9 +299,74 @@ public class AccountActivity extends BaseActivity {
 
     }
 
+    private void proceedFurther() {
+        boolean changes = false;
+        System.out.println("inside proceedFurther() : changes : " + changes);
+        if (!mUser.getEmail().equals(userEmail.getText().toString())) {
+            changes = true;
+            System.out.println("email changes : " + changes);
+            mUser.updateEmail(userEmail.getText().toString());
+            mUser.sendEmailVerification()
+                    .addOnCompleteListener(AccountActivity.this, new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            // [START_EXCLUDE]
+                            // Re-enable button
+                            if (task.isSuccessful()) {
+                                Toast.makeText(AccountActivity.this,
+                                        "Verification email sent !",
+                                        Toast.LENGTH_SHORT).show();
+                                databaseReference.child("email").setValue(userEmail.getText().toString());
+                                                /*mAuth.signOut();
+                                                AccountActivity.this.finish();*/
+                            } else {
+                                Log.e(TAG, "sendEmailVerification", task.getException());
+                                Toast.makeText(AccountActivity.this,
+                                        "Failed to send verification email. Reason - " + task.getException(),
+                                        Toast.LENGTH_LONG).show();
+                            }
+                            // [END_EXCLUDE]
+                        }
+                    });
+            // [END send_email_verification]
+        }
+        String name = " ";
+        if (!userValues.get("name").equals(userName.getText().toString())) {
+            changes = true;
+            System.out.println("name changes : " + changes);
+            databaseReference.child("name").setValue(userName.getText().toString());
+        }
+
+        if (changes) {
+            System.out.println("inside if changes : " + changes);
+            hideProgress();
+            mAuth.signOut();
+            startActivity(new Intent(AccountActivity.this, SignInActivity.class));
+            Toast.makeText(AccountActivity.this, "Please Sign-In again!", Toast.LENGTH_SHORT).show();
+            AccountActivity.this.finish();
+        } else {
+            System.out.println("inside else changes : " + changes);
+            hideProgress();
+            startActivity(new Intent(AccountActivity.this, HomeActivity.class));
+            Toast.makeText(AccountActivity.this, "Changed profile picture successfully!", Toast.LENGTH_SHORT).show();
+            AccountActivity.this.finish();
+        }
+    }
+
     /*private void displayButtons() {
         save.setVisibility(Button.VISIBLE);
         cancel.setVisibility(Button.VISIBLE);
     }*/
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
+            mImageUri = data.getData();
+            image.setImageURI(mImageUri);
+            niu = mImageUri.toString();
+        }
+
+    }
 }
 

@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -172,6 +171,7 @@ public class SignInActivity extends BaseActivity {
                     Log.d(TAG, "name is: " + values.get("name"));
                     Log.d(TAG, "e_key is: " + values.get("enrollment_number"));
                     Log.d(TAG, "email is: " + values.get("email"));
+                    Log.d(TAG, "picture url: " + values.get("picture"));
                     intent.putExtra("user_values_map", values);
                     if (firebaseUser.isEmailVerified()) {
                         //if user has got his email verified
