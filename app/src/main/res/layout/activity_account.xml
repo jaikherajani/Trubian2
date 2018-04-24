@@ -14,13 +14,13 @@
         android:orientation="vertical">
 
         <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/picture"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
             fresco:placeholderImage="@drawable/face_black"
             fresco:roundAsCircle="true"
-            android:id="@+id/picture"
             fresco:roundingBorderColor="@color/Black"
             fresco:roundingBorderWidth="3dp" />
 
@@ -28,9 +28,9 @@
             android:id="@+id/enrollment_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
             android:maxLines="1"
             android:singleLine="true"
-            android:layout_marginVertical="16dp"
             android:textColor="@color/Black"
             android:textSize="24sp" />
 
@@ -130,10 +130,10 @@
             android:visibility="gone" />
 
         <LinearLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:id="@+id/container"
             android:weightSum="4">
 
             <LinearLayout

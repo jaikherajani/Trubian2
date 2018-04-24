@@ -32,7 +32,7 @@ public class NewsFeedActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_feed);
 
-        setTitle(getResources().getString(R.string.app_name)+" : News Feed");
+        setTitle(getResources().getString(R.string.app_name) + " : News Feed");
 
         System.out.println("NewsFeedActivity");
 

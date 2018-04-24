@@ -52,6 +52,7 @@
             android:name=".ContactsActivity"
             android:parentActivityName=".HomeActivity" />
         <activity android:name=".AboutTrubaActivity"></activity>
+        <activity android:name=".CoursesOfferedActivity"></activity>
     </application>
 
 </manifest>

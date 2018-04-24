@@ -14,6 +14,7 @@ import java.util.HashMap;
 public class trubian2 extends Application {
 
     HashMap<String, String> userValues;
+
     @Override
     public void onCreate() {
         super.onCreate();

@@ -44,7 +44,7 @@ public class SignInActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        setTitle(getResources().getString(R.string.app_name)+" : Sign In");
+        setTitle(getResources().getString(R.string.app_name) + " : Sign In");
 
         //stops keyboard from popping up automatically
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);

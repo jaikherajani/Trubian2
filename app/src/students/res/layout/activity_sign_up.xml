@@ -14,13 +14,13 @@
         tools:context="com.example.jaikh.trubian2.SignUpActivity">
 
         <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/picture"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
             fresco:placeholderImage="@drawable/face_black"
             fresco:roundAsCircle="true"
-            android:id="@+id/picture"
             fresco:roundingBorderColor="@color/Black"
             fresco:roundingBorderWidth="3dp" />
 

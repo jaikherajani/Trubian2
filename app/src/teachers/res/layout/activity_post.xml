@@ -30,14 +30,14 @@
             android:layout_height="wrap_content"
             android:textColorHint="@color/Black">
 
-        <EditText
-            android:id="@+id/titleField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Post Title...."
-            android:inputType="textPersonName"
-            android:singleLine="true" />
+            <EditText
+                android:id="@+id/titleField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Post Title...."
+                android:inputType="textPersonName"
+                android:singleLine="true" />
 
         </android.support.design.widget.TextInputLayout>
 

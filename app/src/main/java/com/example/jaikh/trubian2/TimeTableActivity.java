@@ -3,10 +3,10 @@ package com.example.jaikh.trubian2;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -21,7 +21,7 @@ import java.util.List;
 
 public class TimeTableActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
 
-    AppCompatImageView imageView;
+    ImageView imageView;
     StorageReference firebaseStorage;
     String tt = "CS141";
 
@@ -47,6 +47,9 @@ public class TimeTableActivity extends BaseActivity implements AdapterView.OnIte
         categories.add("CS141");
         categories.add("CS151");
         categories.add("CS161");
+        categories.add("IT141");
+        categories.add("IT151");
+        categories.add("IT161");
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
@@ -72,9 +75,8 @@ public class TimeTableActivity extends BaseActivity implements AdapterView.OnIte
 
     }
 
-    public void fetch()
-    {
-        tt +=".jpg";
+    public void fetch() {
+        tt += ".PNG";
         System.out.println(tt);
         System.out.println(firebaseStorage.child(tt).getPath());
         firebaseStorage.child(tt).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {

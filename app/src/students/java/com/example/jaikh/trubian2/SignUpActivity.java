@@ -32,9 +32,9 @@ import java.util.Map;
 
 public class SignUpActivity extends BaseActivity {
 
+    static final int GALLERY_REQUEST = 1;
     static String TAG = "SignUpActivity";
     ProgressBar progressBar;
-    static final int GALLERY_REQUEST = 1;
     SimpleDraweeView image;
     FloatingActionButton verifyEmail;
     EditText emailField, passwordField, userNameField, enrollmentNumberField;

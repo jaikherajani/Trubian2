@@ -1,10 +1,8 @@
 package com.example.jaikh.trubian2;
 
-import android.os.Build;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.transition.Fade;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -24,15 +22,9 @@ public class BaseActivity extends AppCompatActivity {
         title_tv = findViewById(R.id.title);
         if (useToolbar()) {
             setSupportActionBar(toolbar);
+            //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } else {
             toolbar.setVisibility(View.GONE);
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Fade fade = new Fade();
-            fade.setDuration(1000);
-            fade.excludeTarget(toolbar, true);
-            getWindow().setEnterTransition(fade);
-            getWindow().setExitTransition(fade);
         }
     }
 

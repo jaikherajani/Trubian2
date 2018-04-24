@@ -36,13 +36,13 @@ import java.util.HashMap;
 
 public class AccountActivity extends BaseActivity {
 
+    static final int GALLERY_REQUEST = 1;
     static String TAG = "AccountActivity";
     FloatingActionButton signOut, save, cancel, resetPassword;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     TextView enrollmentNumber;
     EditText userName, userEmail, userPassword;
-    static final int GALLERY_REQUEST = 1;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     HashMap<String, String> userValues = new HashMap<String, String>();
@@ -117,6 +117,7 @@ public class AccountActivity extends BaseActivity {
                 userName.setText(userValues.get("name"));
                 enrollmentNumber.setText(userValues.get("enrollment_number"));
                 userPassword.setText("");
+                startActivity(new Intent(AccountActivity.this, HomeActivity.class));
                 finish();
             }
         });

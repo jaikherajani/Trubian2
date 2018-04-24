@@ -6,13 +6,24 @@
     android:background="@color/White"
     tools:context="com.example.jaikh.trubian2.TimeTableActivity">
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/timetable"
+    <Spinner
+        android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:prompt="@string/spinner_title" />
+
+    <ImageView
+        android:id="@+id/timetable"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@id/spinner"
         android:layout_centerInParent="true"
         android:layout_margin="5dp"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_photo_black" />
 
 </RelativeLayout>
