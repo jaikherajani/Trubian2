@@ -5,9 +5,9 @@
     android:layout_height="match_parent"
     tools:context="com.example.jaikh.trubian2.ResourcesActivity">
 
-    <TextView
+    <ListView
+        android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="This page will show some links of tutorials etc..." />
+        android:layout_height="wrap_content"></ListView>
 
 </LinearLayout>

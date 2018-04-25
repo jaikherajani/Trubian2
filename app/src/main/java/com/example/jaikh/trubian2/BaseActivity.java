@@ -35,4 +35,9 @@ public class BaseActivity extends AppCompatActivity {
     void setTitle(String title) {
         title_tv.setText(title);
     }
+
+    /*void setBackButton(){
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setContentInsetStartWithNavigation(0);
+    }*/
 }

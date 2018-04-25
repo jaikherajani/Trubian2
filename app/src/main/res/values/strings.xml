@@ -8,20 +8,17 @@
     <string name="action_sign_in_short">Sign In</string>
     <string name="action_forgot_password">Forgot\nPassword</string>
     <string name="action_verify_email">Verify Email</string>
-    <string name="msg_register">Don\'t have an account?</string>
     <string name="prompt_enrollment_number">Enrollment Number</string>
     <string name="prompt_user_name">User Name</string>
 
     <!--Strings related to the account management-->
     <string name="action_sign_out">Sign Out</string>
     <string name="prompt_current_password">Current Password</string>
-    <string name="prompt_new_password">New Password</string>
     <string name="action_save">Save</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_reset_password">Reset\nPassword</string>
 
     <!--other strings-->
-    <string name="action_download">Download</string>
     <string name="spinner_title">Batch</string>
 
 </resources>
