@@ -45,7 +45,7 @@ public class AccountActivity extends BaseActivity {
     EditText userName, userEmail, userPassword;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    HashMap<String, String> userValues = new HashMap<String, String>();
+    HashMap<String, String> userValues = new HashMap<>();
     String status = "nothing";
     SimpleDraweeView image;
     String oiu, niu;
@@ -176,6 +176,13 @@ public class AccountActivity extends BaseActivity {
                 startActivityForResult(galleryIntent, GALLERY_REQUEST);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(AccountActivity.this, HomeActivity.class));
+        finish();
     }
 
     void showProgress() {
