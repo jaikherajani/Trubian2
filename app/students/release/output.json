@@ -1,0 +1,19 @@
+[
+  {
+    "outputType": {
+      "type": "APK"
+    },
+    "apkInfo": {
+      "type": "MAIN",
+      "splits": [],
+      "versionCode": 1,
+      "versionName": "2.0-students",
+      "enabled": true,
+      "outputFile": "app-students-release.apk",
+      "fullName": "studentsRelease",
+      "baseName": "students-release"
+    },
+    "path": "app-students-release.apk",
+    "properties": {}
+  }
+]

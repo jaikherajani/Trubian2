@@ -24,14 +24,14 @@ import java.util.HashMap;
  * Created by Jai on 01-10-2017.
  */
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final int[] backgroundColors = {R.color.rvc1, R.color.rvc2, R.color.rvc3, R.color.rvc4, R.color.rvc5, R.color.rvc6, R.color.rvc7, R.color.rvc8, R.color.rvc9, R.color.rvc10};
     private ArrayList<String> itemNames;
     private ArrayList<Integer> imageList;
     private Context context;
 
-    public RecyclerAdapter(Context context, ArrayList<String> itemNames, ArrayList<Integer> imageList) {
+    public HomeAdapter(Context context, ArrayList<String> itemNames, ArrayList<Integer> imageList) {
         this.itemNames = itemNames;
         this.imageList = imageList;
         this.context = context;

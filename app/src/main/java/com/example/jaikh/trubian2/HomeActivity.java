@@ -25,7 +25,7 @@ public class HomeActivity extends BaseActivity {
     ArrayList<String> itemList = new ArrayList<>();
     ArrayList<Integer> imageList = new ArrayList<>();
     RecyclerView recyclerView;
-    RecyclerAdapter mAdapter;
+    HomeAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class HomeActivity extends BaseActivity {
         Collections.addAll(itemList, "News Feed", "Time Table", "Calendar", "Resources", "Contacts", "About Truba", "Maps & Directions", "Courses Offered", "MIS", "About Us");
         Collections.addAll(imageList, R.drawable.news_feed, R.drawable.time_table, R.drawable.calendar, R.drawable.resources, R.drawable.contacts, R.drawable.about, R.drawable.maps, R.drawable.courses, R.drawable.mis, R.drawable.others);
         //Collections.addAll(activitiesList, "HomeActivity.class","HomeActivity.class","TimeTableActivity.class","HomeActivity.class","HomeActivity.class","HomeActivity.class","HomeActivity.class");
-        mAdapter = new RecyclerAdapter(HomeActivity.this, itemList, imageList);
+        mAdapter = new HomeAdapter(HomeActivity.this, itemList, imageList);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
         //recyclerView.hasFixedSize();

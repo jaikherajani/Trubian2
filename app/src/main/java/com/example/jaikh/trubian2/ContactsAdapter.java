@@ -22,13 +22,13 @@ import java.util.ArrayList;
  * Created by Jai on 01-10-2017.
  */
 
-public class RecyclerAdapter2 extends RecyclerView.Adapter<RecyclerAdapter2.RecyclerHolder2> {
+public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.RecyclerHolder2> {
 
     Context context;
     private ArrayList<String> namesList, designationList, phoneList, emailList;
     private ArrayList<Integer> imageList;
 
-    public RecyclerAdapter2(Context context, ArrayList<String> namesList, ArrayList<Integer> imageList, ArrayList<String> designationList, ArrayList<String> phoneList, ArrayList<String> emailList) {
+    public ContactsAdapter(Context context, ArrayList<String> namesList, ArrayList<Integer> imageList, ArrayList<String> designationList, ArrayList<String> phoneList, ArrayList<String> emailList) {
         this.namesList = namesList;
         this.imageList = imageList;
         this.designationList = designationList;

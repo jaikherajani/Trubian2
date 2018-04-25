@@ -1,0 +1,19 @@
+[
+  {
+    "outputType": {
+      "type": "APK"
+    },
+    "apkInfo": {
+      "type": "MAIN",
+      "splits": [],
+      "versionCode": 1,
+      "versionName": "2.0-teachers",
+      "enabled": true,
+      "outputFile": "app-teachers-release.apk",
+      "fullName": "teachersRelease",
+      "baseName": "teachers-release"
+    },
+    "path": "app-teachers-release.apk",
+    "properties": {}
+  }
+]
