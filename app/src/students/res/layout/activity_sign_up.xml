@@ -130,7 +130,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="123dp"
                     android:layout_margin="8dp"
-                    android:backgroundTint="@color/FirstItem"
                     android:src="@drawable/verify"
                     app:backgroundTint="@color/FirstItem"
                     app:elevation="4dp"

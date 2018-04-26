@@ -39,7 +39,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
-                android:text="zzzzzzz"
                 android:textColor="@color/Black"
                 android:textStyle="bold" />
 
@@ -61,7 +60,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
-                android:text="zzzzzzzzz"
                 android:textColor="@color/Black" />
 
             <TextView
@@ -70,7 +68,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
-                android:text="zzzzzzzzz"
                 android:textColor="@color/Black" />
 
         </LinearLayout>

@@ -41,16 +41,21 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/branchField"
-            android:layout_width="wrap_content"
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
-            android:ems="10"
-            android:hint="Post Branch...."
-            android:inputType="textPersonName"
-            android:singleLine="true" />
+            android:textColorHint="@color/Black">
 
+            <EditText
+                android:id="@+id/branchField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:ems="10"
+                android:hint="Post Branch...."
+                android:inputType="textPersonName"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -59,7 +64,7 @@
 
             <EditText
                 android:id="@+id/DescField"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
                 android:hint="Post Description"
@@ -91,7 +96,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:backgroundTint="@color/FirstItem"
                 android:src="@drawable/done"
                 app:backgroundTint="@color/FirstItem"
                 app:elevation="4dp"
@@ -100,7 +104,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/SubmitBtn"
                 android:text="Submit Post"
                 android:textColor="@color/Black" />
 
