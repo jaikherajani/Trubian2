@@ -2,6 +2,7 @@ package com.example.jaikh.trubian2;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
@@ -24,6 +25,7 @@ public class CalendarActivity extends BaseActivity {
     CompactCalendarView calendarView;
     DatabaseReference databaseReference;
     ArrayList<Event> eventsList = new ArrayList<>();
+    TextView month, date, event;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ public class CalendarActivity extends BaseActivity {
 
         calendarView = findViewById(R.id.calendarView);
         calendarView.shouldSelectFirstDayOfMonthOnScroll(false);
+        calendarView.setFirstDayOfWeek(1);
+        calendarView.setUseThreeLetterAbbreviation(true);
 
         final SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -46,6 +50,7 @@ public class CalendarActivity extends BaseActivity {
                 events.add(String.valueOf(dataSnapshot.getValue()));
                 System.out.println(dates.get(0)+" : "+events.get(0));*/
                 System.out.println("Data : " + dataSnapshot);
+                eventsList.clear();
                 for (DataSnapshot eventSnapshot : dataSnapshot.getChildren()) {
                     System.out.println("event data : " + eventSnapshot.child("date").getValue(String.class));
 
@@ -54,6 +59,7 @@ public class CalendarActivity extends BaseActivity {
                         eventsList.add(new Event(getResources().getColor(R.color.Black), d.getTime(), eventSnapshot.child("name").getValue(String.class)));
                         //long milliseconds = d.getTime();
                         loadData();
+                        loadToday();
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -90,16 +96,35 @@ public class CalendarActivity extends BaseActivity {
             calendarView.setDate(dates.get(i));
         }*/
 
+        month = findViewById(R.id.month);
+        date = findViewById(R.id.date);
+        event = findViewById(R.id.event);
+
+        month.setText(calendarView.getFirstDayOfCurrentMonth().toString().substring(4, 7));
+        date.setText(f.format(Calendar.getInstance().getTime()));
+
         calendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
                 List<Event> events = calendarView.getEvents(dateClicked);
-                Log.d("CalendarActivity : ", "Day was clicked: " + dateClicked + " with events " + events);
+                Log.d("CalendarActivity : ", "Day was clicked: " + dateClicked + " with events : " + events);
+                date.setText(f.format(dateClicked));
+                event.setText("");
+                if (!events.isEmpty()) {
+                    for (int i = 0; i < events.size(); i++) {
+                        //event.setText(events.get(i).getData().toString());
+                        if (i + 1 < events.size())
+                            event.append(events.get(i).getData().toString() + ", ");
+                        else
+                            event.append(events.get(i).getData().toString());
+                    }
+                }
             }
 
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 Log.d("CalendarActivity : ", "Month was scrolled to: " + firstDayOfNewMonth);
+                month.setText(firstDayOfNewMonth.toString().substring(4, 7));
             }
         });
     }
@@ -111,4 +136,22 @@ public class CalendarActivity extends BaseActivity {
         }
     }
 
+    void loadToday() {
+        Calendar temp_c = Calendar.getInstance();
+        temp_c.set(Calendar.HOUR_OF_DAY, 0);
+        temp_c.set(Calendar.MINUTE, 0);
+        temp_c.set(Calendar.SECOND, 0);
+        List<Event> events = calendarView.getEvents(temp_c.getTime());
+        System.out.println("default date : " + temp_c.getTime() + " with events : " + events.toString());
+        event.setText("");
+        if (!events.isEmpty()) {
+            for (int i = 0; i < events.size(); i++) {
+                //event.setText(events.get(i).getData().toString());
+                if (i + 1 < events.size())
+                    event.append(events.get(i).getData().toString() + ", ");
+                else
+                    event.append(events.get(i).getData().toString());
+            }
+        }
+    }
 }
